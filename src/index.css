@@ -1,13 +1,103 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*
+============
+varaible styles
+============
+*/
+
+:root {
+  /* background colors*/
+  --clr-b-1: #e4e4e4;
+  --clr-b-2: #262626;
+  --clr-b-3: #756951;
+  --clr-b-4: #d9d9d9;
+  --clr-b-5: #e14444;
+  --clr-b-6: #474747;
+
+  /* text colors */
+  --clr-t-6: #525252;
+  --clr-t-7: #828282;
+  --clr-t-8: #bfbfbf;
+
+  /* pargraph line-height */
+  --line-height: 32px;
+
+  /* others */
+  --clr-white: #fff;
+  --clr-black: #000;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* 
+============
+Global Style
+=============
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--clr-b-1);
+  font-family: "Nunito Sans", "Cairo", Poppins, sans-serif;
+}
+.app {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (width >= 576px) {
+  .container {
+    width: 540px;
+  }
+}
+@media (width >= 768px) {
+  .container {
+    width: 720px;
+  }
+}
+@media (width >= 992px) {
+  .container {
+    width: 960px;
+  }
+}
+@media (width >= 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  margin-top: 10rem;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: var(--clr-primary-5);
+  animation: spinner 0.6s linear infinite;
 }

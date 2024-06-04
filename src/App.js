@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  LoginPage,
+  FinancialManagementPage,
+  DashboardPage,
+  ErrorPage,
+  BuildingsPage,
+  ApartmentsPage,
+  PrivateRouteAdmin,
+  PrivateRoute,
+  RegisterUser,
+} from "./pages";
+import { Routes, Route } from "react-router";
+import EditUser from "./pages/EditUser";
+import CreateBuilding from "./pages/CreateBuilding";
+import EditBuilding from "./pages/EditBuilding";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/dashboard" element={<PrivateRouteAdmin />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="create" element={<RegisterUser />} />
+        <Route path="edit" element={<EditUser />} />
+      </Route>
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="/buildings">
+          <Route index element={<BuildingsPage />} />
+          <Route path="create" element={<CreateBuilding />} />
+          <Route path="edit" element={<EditBuilding />} />
+        </Route>
+        <Route path="/apartments" element={<ApartmentsPage />} />
+        <Route path="/financialManagement" element={<FinancialManagementPage />} />
+      </Route>
+
+      <Route path="*" element={<ErrorPage />} />
+    </Routes>
   );
 }
 

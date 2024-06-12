@@ -58,9 +58,11 @@ const Wrapper = styled.section`
   }
   .search_create {
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     max-width: 80%;
     margin: auto;
+    display: flex;
+    justify-content: center;
   }
   > main {
   }

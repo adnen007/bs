@@ -1,37 +1,38 @@
 import styled from "styled-components";
 import Header from "../components/Header";
-import BuildingSearch from "../components/BuildingSearch";
-import Building from "../components/Building";
-import Sidebar from "../components/Sidebar";
 
-const buildings = [
+import Sidebar from "../components/Sidebar";
+import ApartmentsSearch from "../components/ApartmentsSearch";
+import Apartment from "../components/Apartment";
+
+const apartments = [
   {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    appartments: "70",
+    name: "Adnen Soltani",
+    phone: "264869165",
+    rent: "800dt",
+    location: "lvl1 b3",
   },
   {
-    name: "bn mahmoud",
-    address: "dar fathal soukra  7ayzohourr",
-    city: "soukra",
-    appartments: "70",
+    name: "Adnen Soltani",
+    phone: "264869165",
+    rent: "800dt",
+    location: "lvl1 b3",
   },
   {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    appartments: "70",
+    name: "Adnen Soltani",
+    phone: "264869165",
+    rent: "800dt",
+    location: "lvl1 b3",
   },
   {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    appartments: "70",
+    name: "Adnen Soltani",
+    phone: "264869165",
+    rent: "800dt",
+    location: "lvl1 b3",
   },
 ];
 
-const BuildingsPage = () => {
+const FinancialManagement = () => {
   return (
     <Wrapper>
       <Header />
@@ -39,11 +40,11 @@ const BuildingsPage = () => {
 
       <main>
         <div className="search_create ">
-          <BuildingSearch />
+          <ApartmentsSearch />
         </div>
         <div className="content">
-          {buildings.map((el) => {
-            return <Building building={el} />;
+          {apartments.map((el) => {
+            return <Apartment apartment={el} />;
           })}
         </div>
       </main>
@@ -57,12 +58,13 @@ const Wrapper = styled.section`
   }
   .search_create {
     padding-top: 30px;
-    padding-bottom: 20px;
-    max-width: 70%;
+    padding-bottom: 30px;
+    max-width: 80%;
     margin: auto;
+    display: flex;
+    justify-content: center;
   }
-  > main {
-  }
+
   @media (min-width: 768px) {
     > main {
       height: 100vh;
@@ -72,7 +74,7 @@ const Wrapper = styled.section`
   }
   > main .content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 230px);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
     gap: 30px;
     margin: auto;
     margin-top: 30px;
@@ -83,16 +85,15 @@ const Wrapper = styled.section`
   }
   @media (min-width: 768px) {
     > main .content {
-      grid-template-columns: repeat(auto-fill, 210px);
+      grid-template-columns: repeat(auto-fill, 200px);
       max-width: 90%;
     }
   }
   @media (min-width: 1200px) {
     > main .content {
-      grid-template-columns: repeat(auto-fill, 210px);
       max-width: 1100px;
     }
   }
 `;
 
-export default BuildingsPage;
+export default FinancialManagement;

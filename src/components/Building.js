@@ -18,10 +18,10 @@ const Building = ({ building: { name, address, appartments, city } }) => {
   return (
     <Wrapper onClick={onBuildingclick}>
       <div>
-        <div className="icon">
+        {/* <div className="icon">
           <BsFillBuildingsFill />
-        </div>
-        <p>{name}</p>
+        </div> */}
+        <div className="name">{name}</div>
       </div>
       <div>
         <div className="icon">
@@ -59,41 +59,57 @@ const Building = ({ building: { name, address, appartments, city } }) => {
 
 const Wrapper = styled.div`
   background-color: var(--clr-white);
-  padding: 20px;
+  /* padding: 20px; */
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
   position: relative;
 
   > div {
     display: flex;
     align-items: center;
-    padding: 15px 0;
-    gap: 40px;
+    padding: 10px 16px;
+    gap: 15px;
+  }
+  > div:first-child {
     justify-content: center;
   }
+
   > div:not(:first-child) {
-    border-top: 1px solid var(--clr-black);
+    border-top: 1px solid #e4e4e482;
+    /* border-top: 1px solid var(--clr-b-1); */
+  }
+  > div:nth-child(2) {
+    border-top: 2px solid var(--clr-b-1);
   }
 
-  .icon {
+  .name {
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
   }
+
   .icon svg {
     font-size: 26px;
     display: block;
   }
   p {
-    font-size: 18px;
+    font-size: 16px;
     width: 150px;
     text-transform: capitalize;
   }
-  .info {
+  p:nth-child(2) {
+    font-size: 12px;
   }
+
   .info .title {
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 8px;
     text-transform: capitalize;
   }
@@ -108,8 +124,11 @@ const Wrapper = styled.div`
     font-size: 26px;
     display: block;
   }
-  @media (min-width: 768px) {
-    padding: 15px;
+`;
+
+/*
+@media (min-width: 768px) {
+   
     padding-bottom: 20px;
     > div {
       padding: 13px 0;
@@ -148,7 +167,6 @@ const Wrapper = styled.div`
     .setting svg {
       font-size: 22px;
     }
-  }
-`;
+  } */
 
 export default Building;

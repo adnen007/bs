@@ -8,16 +8,16 @@ import { BiDollar } from "react-icons/bi";
 const Apartment = ({ apartment: { name, phone, location, rent } }) => {
   const navigate = useNavigate();
 
-  const onBuildingclick = () => {
-    navigate("/apartments");
+  const onApartmentClick = () => {
+    navigate("/financialmanagement");
   };
   const onEditClick = (e) => {
     e.stopPropagation();
-    navigate("/buildings/edit");
+    navigate("/apartments/edit");
   };
 
   return (
-    <Wrapper onClick={onBuildingclick}>
+    <Wrapper onClick={onApartmentClick}>
       <div className="name">
         <div className="icon">
           <span> {name[0]}</span>

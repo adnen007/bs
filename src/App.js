@@ -1,7 +1,6 @@
 import "./App.css";
 import {
   LoginPage,
-  FinancialManagementPage,
   DashboardPage,
   ErrorPage,
   BuildingsPage,
@@ -14,6 +13,9 @@ import { Routes, Route } from "react-router";
 import EditUser from "./pages/EditUser";
 import CreateBuilding from "./pages/CreateBuilding";
 import EditBuilding from "./pages/EditBuilding";
+import EditApartment from "./pages/EditApartment";
+import CreateApartment from "./pages/CreateApartment";
+import FinancialManagement from "./pages/FinancialManagement";
 
 function App() {
   return (
@@ -30,8 +32,12 @@ function App() {
           <Route path="create" element={<CreateBuilding />} />
           <Route path="edit" element={<EditBuilding />} />
         </Route>
-        <Route path="/apartments" element={<ApartmentsPage />} />
-        <Route path="/financialManagement" element={<FinancialManagementPage />} />
+        <Route path="/apartments">
+          <Route index element={<ApartmentsPage />} />
+          <Route path="edit" element={<EditApartment />} />
+          <Route path="create" element={<CreateApartment />} />
+        </Route>
+        <Route path="/financialmanagement" element={<FinancialManagement />} />
       </Route>
 
       <Route path="*" element={<ErrorPage />} />

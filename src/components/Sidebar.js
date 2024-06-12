@@ -22,8 +22,8 @@ const Sidebar = () => {
 
 const Wrapper = styled.div`
   background-color: var(--clr-b-2);
-  width: 155px;
-  min-width: 155px;
+  width: 200px;
+  min-width: 200px;
   color: white;
   padding: 15px;
   padding-bottom: 30px;
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1200px) {
-    width: 200px;
+    width: 250px;
     padding-top: 20px;
 
     h2 {

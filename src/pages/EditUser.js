@@ -108,7 +108,7 @@ const Wrapper = styled.section`
     font-weight: 400;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     width: fit-content;
   }
   .content form {

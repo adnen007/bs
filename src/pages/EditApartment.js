@@ -4,8 +4,13 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const RegisterUser = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
+const EditApartment = () => {
+  const [form, setForm] = useState({
+    tenant_name: "",
+    phone: "",
+    rent: "",
+    apartment_address: "",
+  });
 
   const onFormChange = (e) => {
     const id = e.target.id;
@@ -13,7 +18,7 @@ const RegisterUser = () => {
     setForm({ ...form, [id]: value });
   };
 
-  const OnButtonClick = (e) => {
+  const OnButtonClick = () => {
     console.log("button clicked");
   };
 
@@ -22,30 +27,35 @@ const RegisterUser = () => {
       <Sidebar />
       <main>
         <div className="content">
-          <Link to="/dashboard" className="close">
+          <Link to="/apartments" className="close">
             <IoCloseOutline />
           </Link>
-          <h2>Registeration</h2>
+          <h2>Edit Apartment</h2>
           <form>
             <div>
-              <label htmlFor="fullname">Full Name</label>
-              <input onChange={onFormChange} type="text" id="fullname" />
+              <label htmlFor="tenant_name">Tenant Name</label>
+              <input onChange={onFormChange} type="text" id="tenant_name" />
             </div>
             <div>
-              <label htmlFor="email">email</label>
-              <input onChange={onFormChange} type="text" id="email" />
-            </div>
-            <div>
-              <label htmlFor="phone">phone</label>
+              <label htmlFor="phone">Phone</label>
               <input onChange={onFormChange} type="text" id="phone" />
             </div>
             <div>
-              <label htmlFor="address">address</label>
-              <input onChange={onFormChange} type="text" id="address" />
+              <label htmlFor="rent">Rent</label>
+              <input onChange={onFormChange} type="text" id="rent" />
             </div>
-            <button type="button" onClick={OnButtonClick}>
-              create
-            </button>
+            <div>
+              <label htmlFor="apartment_address">Apartment Address </label>
+              <input onChange={onFormChange} type="text" id="apartment_address" />
+            </div>
+            <div className="buttons">
+              <button type="button" onClick={OnButtonClick}>
+                Edit
+              </button>
+              <button type="button" onClick={OnButtonClick}>
+                Delete
+              </button>
+            </div>
           </form>
         </div>
       </main>
@@ -108,14 +118,14 @@ const Wrapper = styled.section`
     font-weight: 400;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
+    margin-top: 30px;
     width: fit-content;
   }
   .content form {
     width: 270px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -140,14 +150,17 @@ const Wrapper = styled.section`
     border: none;
     background-color: var(--clr-black);
     color: var(--clr-white);
-    padding: 10px 28px;
-    width: fit-content;
     margin: auto;
-    margin-top: 19px;
     border-radius: var(--radius);
     text-transform: uppercase;
     letter-spacing: 1px;
+    width: 100px;
+    height: 40px;
+  }
+  .buttons {
+    display: flex;
+    margin-top: 19px;
   }
 `;
 
-export default RegisterUser;
+export default EditApartment;

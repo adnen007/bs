@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const EditBuilding = () => {
-  const [form, setForm] = useState({ name: "", city: "", apartement: "", address: "" });
+  const [form, setForm] = useState({ name: "", city: "", apartments: "", address: "" });
 
   const onFormChange = (e) => {
     const id = e.target.id;
@@ -28,20 +28,20 @@ const EditBuilding = () => {
           <h2>Edit Building</h2>
           <form>
             <div>
-              <label htmlFor="fullname">Name</label>
+              <label htmlFor="name">Name</label>
               <input onChange={onFormChange} type="text" id="name" />
             </div>
             <div>
-              <label htmlFor="email">address</label>
+              <label htmlFor="address">address</label>
               <input onChange={onFormChange} type="text" id="address" />
             </div>
             <div>
-              <label htmlFor="phone">city</label>
+              <label htmlFor="city">city</label>
               <input onChange={onFormChange} type="text" id="city" />
             </div>
             <div>
-              <label htmlFor="address">appartment</label>
-              <input onChange={onFormChange} type="text" id="appartment" />
+              <label htmlFor="apartments">apartments</label>
+              <input onChange={onFormChange} type="text" id="appartments" />
             </div>
             <div className="buttons">
               <button type="button" onClick={OnButtonClick}>
@@ -120,7 +120,7 @@ const Wrapper = styled.section`
     width: 270px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 25px;

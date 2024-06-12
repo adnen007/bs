@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { ImStatsDots } from "react-icons/im";
 import { FaUser } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa";
 
 const Nav = () => {
   const location = useLocation();
@@ -34,7 +35,7 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to="/stats">
             <div className="icon">
               <ImStatsDots />
             </div>
@@ -43,7 +44,10 @@ const Nav = () => {
         </li>
       </ul>
     );
-  } else if (currentPath.includes("/apartments") || currentPath === "/renting-info") {
+  } else if (
+    currentPath.includes("/apartments") ||
+    currentPath === "/financialmanagement"
+  ) {
     nav = (
       <ul>
         <li>
@@ -55,7 +59,7 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to="/stats">
             <div className="icon">
               <ImStatsDots />
             </div>
@@ -63,9 +67,9 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to="/apartments">
             <div className="icon">
-              <ImStatsDots />
+              <FaHome />
             </div>
             <p>apartments</p>
           </Link>
@@ -94,14 +98,15 @@ const Wrapper = styled.nav`
     font-size: 26px;
     letter-spacing: 1px;
     text-align: center;
+    text-transform: capitalize;
   }
   li a {
     display: flex;
     color: var(--clr-t-8);
+    align-items: center;
+    gap: 14px;
   }
-  li a .icon {
-    margin-right: 14px;
-  }
+
   li a .icon svg {
     display: block;
     color: var(--clr-t-8);
@@ -121,11 +126,12 @@ const Wrapper = styled.nav`
       font-weight: 500;
       font-size: 12px;
     }
-    li a .icon {
-      margin-right: 10px;
+    li a {
+      gap: 10px;
     }
+
     li a .icon svg {
-      font-size: 12px;
+      font-size: 18px;
     }
   }
 

@@ -7,7 +7,7 @@ const ApartmentsSearch = () => {
     <Wrapper>
       <div>
         <input type="search" placeholder="search" />
-        <Link to="/buildings/create">Create</Link>
+        <Link to="/apartments/create">Create</Link>
       </div>
 
       <button>
@@ -20,23 +20,36 @@ const ApartmentsSearch = () => {
 const Wrapper = styled.form`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
+  flex-grow: 1;
+
   > div {
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-    margin: auto;
     background-color: var(--clr-b-3);
-    padding: 15px;
+    padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    max-width: 260px;
+    max-width: 300px;
+  }
+
+  @media (min-width: 425px) {
+    > div {
+      justify-content: space-around;
+    }
   }
 
   @media (min-width: 768px) {
     > div {
-      max-width: initial;
+      max-width: 350px;
+    }
+  }
+  @media (min-width: 992px) {
+    > div {
+      max-width: 500px;
     }
   }
 
@@ -44,11 +57,16 @@ const Wrapper = styled.form`
     width: 650px;
   }
   input {
-    width: 110px;
-    height: 28px;
+    width: 105px;
+    height: 34px;
     border: none;
     border-radius: var(--radius);
     padding-left: 10px;
+  }
+  @media (min-width: 425px) {
+    input {
+      width: 130px;
+    }
   }
   a {
     display: block;
@@ -58,7 +76,8 @@ const Wrapper = styled.form`
   button {
     border: none;
     color: var(--clr-white);
-    background-color: var(--clr-b-5);
+    /* background-color: var(--clr-b-5); */
+    background-color: var(--clr-b-3);
     width: 50px;
     height: 50px;
 

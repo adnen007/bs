@@ -183,9 +183,9 @@ const Wrapper = styled.section`
   }
 
   .table {
-    width: 90%;
+    width: 94%;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   .table .header-row {
@@ -259,7 +259,8 @@ const Wrapper = styled.section`
 
   @media (width >= 1200px) {
     .table {
-      width: 960px;
+      width: 1140px;
+      max-width: 94%;
     }
 
     .table .header-row {

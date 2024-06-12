@@ -16,7 +16,7 @@ const Wrapper = styled.form`
   align-items: center;
   margin: auto;
   background-color: var(--clr-b-3);
-  padding: 15px;
+  padding: 10px 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 260px;
@@ -30,7 +30,7 @@ const Wrapper = styled.form`
   }
   input {
     width: 110px;
-    height: 28px;
+    height: 34px;
     border: none;
     border-radius: var(--radius);
     padding-left: 10px;

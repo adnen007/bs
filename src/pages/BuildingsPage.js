@@ -9,25 +9,25 @@ const buildings = [
     name: "bn mahmoud",
     address: "dar fathal soukra",
     city: "soukra",
-    appartments: "70",
+    apartments: "70",
   },
   {
     name: "bn mahmoud",
     address: "dar fathal soukra  7ayzohourr",
     city: "soukra",
-    appartments: "70",
+    apartments: "70",
   },
   {
     name: "bn mahmoud",
     address: "dar fathal soukra",
     city: "soukra",
-    appartments: "70",
+    apartments: "70",
   },
   {
     name: "bn mahmoud",
     address: "dar fathal soukra",
     city: "soukra",
-    appartments: "70",
+    apartments: "70",
   },
 ];
 

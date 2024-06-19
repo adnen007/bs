@@ -4,7 +4,7 @@ import { FaMap, FaMapMarkerAlt, FaHome } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const Building = ({ building: { name, address, appartments, city } }) => {
+const Building = ({ building: { name, address, apartments, city } }) => {
   const navigate = useNavigate();
 
   const onBuildingclick = () => {
@@ -46,8 +46,8 @@ const Building = ({ building: { name, address, appartments, city } }) => {
           <FaHome />
         </div>
         <div className="info">
-          <p className="title">appartments</p>
-          <p>{appartments}</p>
+          <p className="title">apartments</p>
+          <p>{apartments}</p>
         </div>
       </div>
       <span onClick={onEditClick} className="setting">

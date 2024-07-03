@@ -16,6 +16,7 @@ import EditBuilding from "./pages/EditBuilding";
 import EditApartment from "./pages/EditApartment";
 import CreateApartment from "./pages/CreateApartment";
 import FinancialManagement from "./pages/FinancialManagement";
+import StatsPage from "./pages/StatsPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="create" element={<CreateApartment />} />
         </Route>
         <Route path="/financialmanagement" element={<FinancialManagement />} />
+        <Route path="/stats" element={<StatsPage />} />
       </Route>
 
       <Route path="*" element={<ErrorPage />} />

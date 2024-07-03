@@ -1,5 +1,4 @@
 import LoginPage from "./LoginPage";
-import FinancialManagementPage from "./financialManagementPage";
 import DashboardPage from "./DashboardPage";
 import ApartmentsPage from "./ApartmentsPage";
 import BuildingsPage from "./BuildingsPage";
@@ -10,7 +9,6 @@ import PrivateRouteAdmin from "./PrivateRouteAdmin";
 import RegisterUser from "./RegisterUser";
 export {
   LoginPage,
-  FinancialManagementPage,
   DashboardPage,
   ApartmentsPage,
   BuildingsPage,

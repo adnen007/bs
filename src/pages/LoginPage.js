@@ -69,6 +69,7 @@ const Wrapper = styled.section`
   @media (min-width: 400px) {
     .right .content {
       width: 340px;
+      padding-bottom: 50px;
     }
   }
   .right .logo {
@@ -143,6 +144,7 @@ const Wrapper = styled.section`
     font-size: 18px;
     font-weight: 800;
     letter-spacing: 1px;
+    cursor: pointer;
   }
 `;
 

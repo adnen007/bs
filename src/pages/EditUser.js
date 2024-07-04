@@ -138,7 +138,7 @@ const Wrapper = styled.section`
   }
   .content form button {
     border: none;
-    background-color: var(--clr-black);
+    background-color: var(--clr-brand-1);
     color: var(--clr-white);
     padding: 10px 28px;
     width: fit-content;

@@ -59,13 +59,15 @@ const Wrapper = styled.div`
   .outcomes p:first-child {
     width: 90px;
     font-weight: 600;
+    letter-spacing: 0.2px;
+    font-size: 16px;
   }
   textarea {
     background-color: #8282821f;
     width: 100%;
     height: 80px;
     font-size: 12px;
-
+    resize: none;
     margin: auto;
     margin-top: 12px;
     border: none;
@@ -83,10 +85,10 @@ const Wrapper = styled.div`
     padding: 9px 12px;
     border-radius: 7px;
     color: white;
-    background-color: var(--clr-black);
+    background-color: var(--clr-brand-1);
   }
   .buttons button.edit {
-    background-color: var(--clr-b-3);
+    background-color: var(--clr-brand-3);
   }
 `;
 export default Month;

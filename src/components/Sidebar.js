@@ -21,7 +21,7 @@ const Sidebar = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: var(--clr-b-2);
+  background-color: var(--clr-brand-1);
   width: 200px;
   min-width: 200px;
   color: white;

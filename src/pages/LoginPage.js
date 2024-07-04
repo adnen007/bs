@@ -3,6 +3,10 @@ import avatar from "../assets/images/undraw_male_avatar_g98d 1.svg";
 import logo from "../assets/images/Group 1686550876.svg";
 
 const LoginPage = () => {
+  const onLogin = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
       <div className="left">
@@ -19,10 +23,13 @@ const LoginPage = () => {
           <p>See what is going on with your business</p>
           <form>
             <label htmlFor="email">Email</label>
-            <input type="email" />
+            <input required type="email" />
             <label htmlFor="password">Password</label>
-            <input type="password" />
-            <button type="submit"> Login </button>
+            <input required type="password" />
+            <button onClick={onLogin} type="submit">
+              {" "}
+              Login{" "}
+            </button>
           </form>
         </div>
       </div>

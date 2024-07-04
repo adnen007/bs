@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { BsFillBuildingsFill } from "react-icons/bs";
-import { FaPhoneAlt, FaMapMarkerAlt, FaHome } from "react-icons/fa";
+import { FaPhoneAlt, FaHome } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BiDollar } from "react-icons/bi";
@@ -84,7 +83,7 @@ const Wrapper = styled.div`
 
   .name .icon {
     color: var(--clr-white);
-    background-color: var(--clr-black);
+    background-color: var(--clr-brand-1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,6 +116,7 @@ const Wrapper = styled.div`
   .setting svg {
     font-size: 26px;
     display: block;
+    color: var(--clr-brand-1);
   }
   @media (min-width: 768px) {
   }

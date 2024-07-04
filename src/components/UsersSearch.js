@@ -19,7 +19,7 @@ const Wrapper = styled.form`
   background-color: #eaeaea;
   padding: 10px 15px;
   border-radius: var(--radius);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   @media (width >= 1200px) {
     width: 80%;

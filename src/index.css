@@ -31,6 +31,11 @@ varaible styles
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
   --fixed-width: 620px;
+
+  /*brand color*/
+  --clr-brand-1: #040818;
+  --clr-brand-2: #8a2a2a;
+  --clr-brand-3: #040818ad;
 }
 
 /* 

@@ -31,8 +31,8 @@ const Row = ({ user: { name, location, phone, email } }) => {
 };
 
 const Wrapper = styled.div`
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgb(247 250 255 / 25%) 0px 4px 8px -2px,
+    rgb(253 253 253 / 8%) 0px 0px 0px 1px;
   > div {
     display: flex;
     justify-content: space-between;
@@ -44,6 +44,9 @@ const Wrapper = styled.div`
   }
   > div:not(:first-child) {
     border-top: 1px solid var(--clr-b-1);
+  }
+  > div:nth-child(2) {
+    border-top: none;
   }
   > div:first-child {
     background-color: var(--clr-b-1);
@@ -70,7 +73,7 @@ const Wrapper = styled.div`
   .actions a {
     display: block;
     color: var(--clr-white);
-    background-color: var(--clr-black);
+    background-color: var(--clr-brand-2);
     padding: 11px 15px;
     border-radius: 10px;
     overflow: hidden;

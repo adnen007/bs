@@ -118,7 +118,7 @@ const Wrapper = styled.section`
     padding: 30px 0;
   }
   .table {
-    background-color: var(--clr-b-3);
+    background-color: var(--clr-brand-1);
     padding: 20px 0;
   }
   .table .container {

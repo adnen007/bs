@@ -15,7 +15,7 @@ const Wrapper = styled.form`
   justify-content: space-around;
   align-items: center;
   margin: auto;
-  background-color: var(--clr-b-3);
+  background-color: var(--clr-brand-3);
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);

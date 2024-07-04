@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { BsFillBuildingsFill } from "react-icons/bs";
-import { FaMap, FaMapMarkerAlt, FaHome } from "react-icons/fa";
+import { FaMapMarkerAlt, FaHome } from "react-icons/fa";
+import { FaLocationCrosshairs } from "react-icons/fa6";
+
 import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +26,7 @@ const Building = ({ building: { name, address, apartments, city } }) => {
       </div>
       <div>
         <div className="icon">
-          <FaMap />
+          <FaLocationCrosshairs />
         </div>
         <div className="info">
           <p className="title">address</p>
@@ -96,7 +97,7 @@ const Wrapper = styled.div`
   }
 
   .icon svg {
-    font-size: 26px;
+    font-size: 22px;
     display: block;
   }
   p {
@@ -123,6 +124,7 @@ const Wrapper = styled.div`
   .setting svg {
     font-size: 26px;
     display: block;
+    color: var(--clr-brand-1);
   }
 `;
 

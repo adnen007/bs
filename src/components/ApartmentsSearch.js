@@ -29,7 +29,7 @@ const Wrapper = styled.form`
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--clr-b-3);
+    background-color: var(--clr-brand-3);
     padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -77,7 +77,7 @@ const Wrapper = styled.form`
     border: none;
     color: var(--clr-white);
     /* background-color: var(--clr-b-5); */
-    background-color: var(--clr-b-3);
+    background-color: var(--clr-brand-3);
     width: 50px;
     height: 50px;
 

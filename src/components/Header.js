@@ -23,7 +23,7 @@ const Header = () => {
         </div>
       </div>
       <aside className={aside ? "active" : ""}>
-        <div onClick={toggleAside} className="icon" className="close">
+        <div onClick={toggleAside} className="close">
           <IoCloseOutline />
         </div>
         <Nav />
@@ -35,7 +35,7 @@ const Header = () => {
 
 const Wrapper = styled.header`
   height: 70px;
-  background-color: var(--clr-b-2);
+  background-color: var(--clr-brand-1);
   position: relative;
   z-index: 9;
   @media (min-width: 768px) {
@@ -61,10 +61,10 @@ const Wrapper = styled.header`
   aside {
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--clr-b-2);
+    background-color: var(--clr-brand-1);
     display: flex;
     flex-direction: column;
     padding-bottom: 70px;

@@ -58,20 +58,21 @@ const Nav = () => {
             <p>Buildings</p>
           </Link>
         </li>
-        <li>
-          <Link to="/stats">
-            <div className="icon">
-              <ImStatsDots />
-            </div>
-            <p>Stats</p>
-          </Link>
-        </li>
+
         <li>
           <Link to="/apartments">
             <div className="icon">
               <FaHome />
             </div>
             <p>apartments</p>
+          </Link>
+        </li>
+        <li>
+          <Link to="/stats">
+            <div className="icon">
+              <ImStatsDots />
+            </div>
+            <p>Stats</p>
           </Link>
         </li>
       </ul>

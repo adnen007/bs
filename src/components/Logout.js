@@ -1,10 +1,21 @@
 import { CiLogout } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { userActions } from "../features/user/userSlice";
 
 const Logout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onLogout = () => {
+    localStorage.clear();
+    dispatch(userActions.logout());
+    navigate("/");
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={onLogout}>
       <div className="icon">
         <CiLogout />
       </div>

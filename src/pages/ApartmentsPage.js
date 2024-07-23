@@ -5,34 +5,26 @@ import Sidebar from "../components/Sidebar";
 import ApartmentsSearch from "../components/ApartmentsSearch";
 import Apartment from "../components/Apartment";
 
-const apartments = [
-  {
-    name: "Adnen Soltani",
-    phone: "264869165",
-    rent: "800dt",
-    location: "lvl1 b3",
-  },
-  {
-    name: "Adnen Soltani",
-    phone: "264869165",
-    rent: "800dt",
-    location: "lvl1 b3",
-  },
-  {
-    name: "Adnen Soltani",
-    phone: "264869165",
-    rent: "800dt",
-    location: "lvl1 b3",
-  },
-  {
-    name: "Adnen Soltani",
-    phone: "264869165",
-    rent: "800dt",
-    location: "lvl1 b3",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchApartments } from "../features/aparments/aparmentsAsync";
+import { useLocation } from "react-router-dom";
 
 const ApartmentsPage = () => {
+  const apartments = useSelector((state) => {
+    return state.apartments.apartments_list;
+  });
+
+  const dispatch = useDispatch();
+  const {
+    state: { id },
+  } = useLocation();
+
+  useEffect(() => {
+    dispatch(fetchApartments(id));
+    // here are not using the id now but after telling ghasen to fix this we will use it
+  }, [dispatch, id]);
+
   return (
     <Wrapper>
       <Header />
@@ -44,7 +36,7 @@ const ApartmentsPage = () => {
         </div>
         <div className="content">
           {apartments.map((el) => {
-            return <Apartment apartment={el} />;
+            return <Apartment key={el.id} apartment={el} />;
           })}
         </div>
       </main>

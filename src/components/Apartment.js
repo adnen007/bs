@@ -4,7 +4,10 @@ import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BiDollar } from "react-icons/bi";
 
-const Apartment = ({ apartment: { name, phone, location, rent } }) => {
+// hey there change the description witH name and change the stage with location or address when
+// ghassen fix this
+
+const Apartment = ({ apartment: { description, numero, etage, prix } }) => {
   const navigate = useNavigate();
 
   const onApartmentClick = () => {
@@ -19,28 +22,28 @@ const Apartment = ({ apartment: { name, phone, location, rent } }) => {
     <Wrapper onClick={onApartmentClick}>
       <div className="name">
         <div className="icon">
-          <span> {name[0]}</span>
+          <span> {description[0]}</span>
         </div>
-        <p>{name}</p>
+        <p>{description}</p>
       </div>
 
       <div className="phone">
         <div className="icon">
           <FaPhoneAlt />
         </div>
-        <p>{phone}</p>
+        <p>{numero}</p>
       </div>
       <div className="rent">
         <div className="icon">
           <BiDollar />
         </div>
-        <p>{rent}</p>
+        <p>{prix}</p>
       </div>
       <div className="location">
         <div className="icon">
           <FaHome />
         </div>
-        <p>{location}</p>
+        <p>{etage}</p>
       </div>
 
       <span onClick={onEditClick} className="setting">

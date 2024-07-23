@@ -5,15 +5,23 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const Building = ({ building: { name, address, apartments, city } }) => {
+const Building = ({
+  building: {
+    nom: name,
+    adresse: address,
+    nombre_appartement: apartments,
+    ville: city,
+    id,
+  },
+}) => {
   const navigate = useNavigate();
 
   const onBuildingclick = () => {
-    navigate("/apartments");
+    navigate("/apartments", { state: { id } });
   };
   const onEditClick = (e) => {
     e.stopPropagation();
-    navigate("/buildings/edit");
+    navigate("/buildings/edit", { state: { name, address, apartments, city, id } });
   };
 
   return (

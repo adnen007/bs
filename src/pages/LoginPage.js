@@ -1,11 +1,57 @@
 import styled from "styled-components";
 import avatar from "../assets/images/undraw_male_avatar_g98d 1.svg";
 import logo from "../assets/images/Group 1686550876.svg";
+import Loading from "../components/Loading";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { userLogin } from "../features/user/userAsync";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
+  const [loginState, setLoginState] = useState({ email: "", password: "" });
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.user);
+  const loading = useSelector((state) => state.user.loading);
+
+  const onInputChange = (e) => {
+    const element = e.target;
+
+    setLoginState({ ...loginState, [element.name]: element.value });
+  };
+
   const onLogin = (e) => {
     e.preventDefault();
+    if (loginState.password.length < 6) {
+      toast.error("password shouldn't be less than 6 characters");
+    } else {
+      dispatch(userLogin(loginState));
+    }
+
+    // mm i can here try to fetch and dispatch actions
+    // like i can create a fetch function with axios.
+    // in that function first dispach the loading action witch will trun loaidng to true.
+    // then dispatch the reponse
+    // then make the loading false and depend on the result of the response show result in ui
+    // mmm this is fine if i wasn't working with redux toolkit.
+
+    // so here i'll do something different i will use the the thunk.
+    // so i will create a async function that contain all the above and with this way i'll make sure
+    // even this kind of asyn functionality that affect the state will be away from the ui and organized
+    // in its own place
   };
+
+  useEffect(() => {
+    if (user.role === "client") {
+      navigate("/buildings");
+    } else if (user.role === "admin") {
+      navigate("/dashboard");
+    }
+  }, [user.role, navigate]);
 
   return (
     <Wrapper>
@@ -23,12 +69,23 @@ const LoginPage = () => {
           <p>See what is going on with your business</p>
           <form>
             <label htmlFor="email">Email</label>
-            <input required type="email" />
+            <input
+              onChange={onInputChange}
+              name="email"
+              value={loginState.email}
+              required
+              type="email"
+            />
             <label htmlFor="password">Password</label>
-            <input required type="password" />
+            <input
+              value={loginState.password}
+              onChange={onInputChange}
+              name="password"
+              required
+              type="password"
+            />
             <button onClick={onLogin} type="submit">
-              {" "}
-              Login{" "}
+              {loading ? <Loading /> : "Login"}
             </button>
           </form>
         </div>

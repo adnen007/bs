@@ -3,18 +3,43 @@ import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { deleteBuilding, editBuilding } from "../features/buildings/buildingsAsync";
+import { useDispatch, useSelector } from "react-redux";
 
 const EditBuilding = () => {
-  const [form, setForm] = useState({ name: "", city: "", apartments: "", address: "" });
+  const { state: locationState } = useLocation();
+
+  const userId = useSelector((state) => {
+    return state.user.user.id;
+  });
+
+  let initialState = { name: "", city: "", apartments: "", address: "", id: null };
+
+  if (locationState) {
+    initialState = locationState;
+  }
+
+  const deleteLoading = useSelector((state) => state.buildings.delete_building.loading);
+  const editLoading = useSelector((state) => state.buildings.edit_building.loading);
+
+  const [form, setForm] = useState(initialState);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
-  const OnButtonClick = (e) => {
-    console.log("button clicked");
+  const onDelete = (e) => {
+    dispatch(deleteBuilding({ id: form.id, navigate }));
+  };
+
+  const onEdit = (e) => {
+    dispatch(editBuilding({ ...form, userId, navigate }));
   };
 
   return (
@@ -29,26 +54,36 @@ const EditBuilding = () => {
           <form>
             <div>
               <label htmlFor="name">Name</label>
-              <input onChange={onFormChange} type="text" id="name" />
+              <input onChange={onFormChange} value={form.name} type="text" name="name" />
             </div>
             <div>
               <label htmlFor="address">address</label>
-              <input onChange={onFormChange} type="text" id="address" />
+              <input
+                onChange={onFormChange}
+                value={form.address}
+                type="text"
+                name="address"
+              />
             </div>
             <div>
               <label htmlFor="city">city</label>
-              <input onChange={onFormChange} type="text" id="city" />
+              <input onChange={onFormChange} value={form.city} type="text" name="city" />
             </div>
             <div>
               <label htmlFor="apartments">apartments</label>
-              <input onChange={onFormChange} type="text" id="appartments" />
+              <input
+                onChange={onFormChange}
+                value={form.apartments}
+                type="text"
+                name="appartments"
+              />
             </div>
             <div className="buttons">
-              <button type="button" onClick={OnButtonClick}>
-                Edit
+              <button type="button" onClick={onEdit}>
+                {editLoading ? "edit.." : "Edit"}
               </button>
-              <button type="button" onClick={OnButtonClick}>
-                Delete
+              <button type="button" onClick={onDelete}>
+                {deleteLoading ? "delete.." : "Delete"}
               </button>
             </div>
           </form>

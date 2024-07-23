@@ -5,7 +5,6 @@ import {
   ErrorPage,
   BuildingsPage,
   ApartmentsPage,
-  PrivateRouteAdmin,
   PrivateRoute,
   RegisterUser,
 } from "./pages";
@@ -22,7 +21,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/dashboard" element={<PrivateRouteAdmin />}>
+      <Route path="/dashboard" element={<PrivateRoute />}>
         <Route index element={<DashboardPage />} />
         <Route path="create" element={<RegisterUser />} />
         <Route path="edit" element={<EditUser />} />

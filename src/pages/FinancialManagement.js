@@ -25,9 +25,9 @@ const FinancialManagement = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const handleYearChange = (event) => {
-    const selectedYear = event.target.value;
-    setSelectedYear(selectedYear);
-    console.log(`Selected year: ${selectedYear}`);
+    const year = event.target.value;
+    setSelectedYear(year);
+    console.log(`Selected year: ${year}`);
   };
 
   // here should return a loading then send request to get the data of the current year and when we

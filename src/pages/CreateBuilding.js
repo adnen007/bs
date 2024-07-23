@@ -3,18 +3,32 @@ import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createBuilding } from "../features/buildings/buildingsAsync";
+import { useNavigate } from "react-router-dom";
 
 const CreateBuilding = () => {
   const [form, setForm] = useState({ name: "", city: "", apartments: "", address: "" });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userId = useSelector((state) => {
+    return state.user.user.id;
+  });
+
+  const loading = useSelector((state) => {
+    return state.buildings.create_building.loading;
+  });
+
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
   const OnButtonClick = (e) => {
-    console.log("button clicked");
+    dispatch(createBuilding({ ...form, user_id: userId, navigate }));
   };
 
   return (
@@ -29,22 +43,22 @@ const CreateBuilding = () => {
           <form>
             <div>
               <label htmlFor="name">Name</label>
-              <input onChange={onFormChange} type="text" id="name" />
+              <input onChange={onFormChange} type="text" name="name" />
             </div>
             <div>
               <label htmlFor="address">address</label>
-              <input onChange={onFormChange} type="text" id="address" />
+              <input onChange={onFormChange} type="text" name="address" />
             </div>
             <div>
               <label htmlFor="city">city</label>
-              <input onChange={onFormChange} type="text" id="city" />
+              <input onChange={onFormChange} type="text" name="city" />
             </div>
             <div>
               <label htmlFor="apartments">apartments</label>
-              <input onChange={onFormChange} type="text" id="apartments" />
+              <input onChange={onFormChange} type="text" name="apartments" />
             </div>
             <button type="button" onClick={OnButtonClick}>
-              create
+              {loading ? "creating.." : "create"}
             </button>
           </form>
         </div>

@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { FaUserSecret } from "react-icons/fa6";
 import Nav from "../components/Nav";
 import Logout from "../components/Logout";
-
+import { useSelector } from "react-redux";
 const Sidebar = () => {
+  const user = useSelector((state) => {
+    return state.user.user;
+  });
+
   return (
     <Wrapper>
       <h2>Bservices</h2>
@@ -11,8 +15,8 @@ const Sidebar = () => {
         <div className="image">
           <FaUserSecret />
         </div>
-        <h4>Ghassen</h4>
-        <p className="email">ghassenabidi@gmail.com</p>
+        <h4>{user.fullname}</h4>
+        <p className="email">{user.email}</p>
       </div>
       <Nav />
       <Logout />

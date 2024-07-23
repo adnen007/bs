@@ -3,35 +3,20 @@ import Header from "../components/Header";
 import BuildingSearch from "../components/BuildingSearch";
 import Building from "../components/Building";
 import Sidebar from "../components/Sidebar";
-
-const buildings = [
-  {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    apartments: "70",
-  },
-  {
-    name: "bn mahmoud",
-    address: "dar fathal soukra  7ayzohourr",
-    city: "soukra",
-    apartments: "70",
-  },
-  {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    apartments: "70",
-  },
-  {
-    name: "bn mahmoud",
-    address: "dar fathal soukra",
-    city: "soukra",
-    apartments: "70",
-  },
-];
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBuildings } from "../features/buildings/buildingsAsync";
+import Loading from "../components/Loading";
 
 const BuildingsPage = () => {
+  const dispatch = useDispatch();
+  const { loading, filtered_buildings_list: filterdBuildings } = useSelector(
+    (state) => state.buildings
+  );
+  useEffect(() => {
+    dispatch(fetchBuildings());
+  }, [dispatch]);
+
   return (
     <Wrapper>
       <Header />
@@ -42,9 +27,13 @@ const BuildingsPage = () => {
           <BuildingSearch />
         </div>
         <div className="content">
-          {buildings.map((el) => {
-            return <Building building={el} />;
-          })}
+          {loading ? (
+            <Loading type="section" />
+          ) : (
+            filterdBuildings.map((el, i) => {
+              return <Building key={i} building={el} />;
+            })
+          )}
         </div>
       </main>
     </Wrapper>
@@ -72,7 +61,7 @@ const Wrapper = styled.section`
   }
   > main .content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 230px);
+    grid-template-columns: repeat(auto-fit, 230px);
     gap: 30px;
     margin: auto;
     margin-top: 30px;
@@ -83,13 +72,13 @@ const Wrapper = styled.section`
   }
   @media (min-width: 768px) {
     > main .content {
-      grid-template-columns: repeat(auto-fill, 210px);
+      grid-template-columns: repeat(auto-fit, 210px);
       max-width: 90%;
     }
   }
   @media (min-width: 1200px) {
     > main .content {
-      grid-template-columns: repeat(auto-fill, 210px);
+      grid-template-columns: repeat(auto-fit, 210px);
       max-width: 1100px;
     }
   }

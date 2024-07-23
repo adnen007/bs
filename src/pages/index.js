@@ -5,7 +5,6 @@ import BuildingsPage from "./BuildingsPage";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 import PrivateRoute from "./PrivateRoute";
-import PrivateRouteAdmin from "./PrivateRouteAdmin";
 import RegisterUser from "./RegisterUser";
 export {
   LoginPage,
@@ -15,6 +14,5 @@ export {
   ErrorPage,
   LoadingPage,
   PrivateRoute,
-  PrivateRouteAdmin,
   RegisterUser,
 };

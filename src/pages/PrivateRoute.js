@@ -1,8 +1,22 @@
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const PrivateRoute = () => {
-  // ok here we will check if there is a token of a client if there is we will return the outlet if
-  // there isn't we will return loading then we will retrun to the login page.
+  const token = useSelector((state) => {
+    return state.user.access_token;
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+      // and show warn that you need to login first
+    }
+  }, []);
+
   return <Outlet />;
 };
 

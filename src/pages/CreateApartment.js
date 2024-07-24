@@ -1,26 +1,50 @@
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { createApartment } from "../features/aparments/aparmentsAsync";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CreateApartment = () => {
+  const buildingId = useSelector((state) => state.apartments.current_building);
+  const createLoading = useSelector((state) => state.apartments.create_apartment.loading);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     tenant_name: "",
     phone: "",
     rent: "",
     apartment_address: "",
+    buildingId,
   });
 
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
-  const OnButtonClick = () => {
-    console.log("button clicked");
+  const onCreate = () => {
+    for (let key in form) {
+      if (form[key] === "") {
+        toast.warn("fill all fields");
+        return;
+      }
+    }
+    dispatch(createApartment({ ...form }));
   };
+
+  useEffect(() => {
+    if (!buildingId) {
+      toast.warn("chose a building before creating an apartment");
+      navigate("/buildings");
+    }
+  }, []);
 
   return (
     <Wrapper>
@@ -34,23 +58,23 @@ const CreateApartment = () => {
           <form>
             <div>
               <label htmlFor="tenant_name">Tenant Name</label>
-              <input onChange={onFormChange} type="text" id="tenant_name" />
+              <input onChange={onFormChange} type="text" name="tenant_name" />
             </div>
             <div>
               <label htmlFor="phone">Phone</label>
-              <input onChange={onFormChange} type="text" id="phone" />
+              <input onChange={onFormChange} type="text" name="phone" />
             </div>
             <div>
               <label htmlFor="rent">Rent</label>
-              <input onChange={onFormChange} type="text" id="rent" />
+              <input onChange={onFormChange} type="text" name="rent" />
             </div>
             <div>
               <label htmlFor="apartment_address">Apartment Address </label>
-              <input onChange={onFormChange} type="text" id="apartment_address" />
+              <input onChange={onFormChange} type="text" name="apartment_address" />
             </div>
             <div className="buttons">
-              <button type="button" onClick={OnButtonClick}>
-                Create
+              <button type="button" onClick={onCreate}>
+                {createLoading ? "create.." : "create"}
               </button>
             </div>
           </form>

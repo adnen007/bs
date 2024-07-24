@@ -1,16 +1,31 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaDollarSign } from "react-icons/fa";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { apartmentsActions } from "../features/aparments/aparmentsSlice";
 
 const ApartmentsSearch = () => {
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+
+  const onSearch = (e) => {
+    setText(e.target.value);
+    dispatch(apartmentsActions.filter_apartments(e.target.value));
+  };
+
+  const onButtonClick = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
       <div>
-        <input type="search" placeholder="search" />
+        <input onChange={onSearch} value={text} type="search" placeholder="search" />
         <Link to="/apartments/create">Create</Link>
       </div>
 
-      <button>
+      <button onClick={onButtonClick}>
         <FaDollarSign />
       </button>
     </Wrapper>

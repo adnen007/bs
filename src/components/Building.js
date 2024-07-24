@@ -4,6 +4,8 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 
 import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { apartmentsActions } from "../features/aparments/aparmentsSlice";
+import { useDispatch } from "react-redux";
 
 const Building = ({
   building: {
@@ -15,9 +17,11 @@ const Building = ({
   },
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onBuildingclick = () => {
-    navigate("/apartments", { state: { id } });
+    dispatch(apartmentsActions.currentBuilding(id));
+    navigate("/apartments");
   };
   const onEditClick = (e) => {
     e.stopPropagation();
@@ -135,48 +139,5 @@ const Wrapper = styled.div`
     color: var(--clr-brand-1);
   }
 `;
-
-/*
-@media (min-width: 768px) {
-   
-    padding-bottom: 20px;
-    > div {
-      padding: 13px 0;
-      gap: 20px;
-      justify-content: center;
-    }
-    > div:not(:first-child) {
-      border-top: 1px solid var(--clr-black);
-    }
-
-    .icon {
-    }
-    .icon svg {
-      font-size: 20px;
-      display: block;
-    }
-    p {
-      font-size: 14px;
-      width: 140px;
-      text-transform: capitalize;
-    }
-    .info {
-    }
-    .info .title {
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-transform: capitalize;
-    }
-    .setting {
-      display: block;
-      position: absolute;
-      bottom: 6px;
-      right: 6px;
-      border-top: none;
-    }
-    .setting svg {
-      font-size: 22px;
-    }
-  } */
 
 export default Building;

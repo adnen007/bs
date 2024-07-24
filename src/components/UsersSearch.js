@@ -1,10 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../features/user/userSlice";
 
 const UsersSearch = () => {
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const onSearch = (e) => {
+    setText(e.target.value);
+    dispatch(userActions.filterUsers(e.target.value));
+  };
+
   return (
     <Wrapper>
-      <input type="search" placeholder="search" />
+      <input onChange={onSearch} value={text} type="search" placeholder="search" />
       <Link to="/dashboard/create">Create</Link>
     </Wrapper>
   );

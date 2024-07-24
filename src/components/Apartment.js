@@ -7,7 +7,7 @@ import { BiDollar } from "react-icons/bi";
 // hey there change the description witH name and change the stage with location or address when
 // ghassen fix this
 
-const Apartment = ({ apartment: { description, numero, etage, prix } }) => {
+const Apartment = ({ apartment: { description, numero, etage, prix, id } }) => {
   const navigate = useNavigate();
 
   const onApartmentClick = () => {
@@ -15,7 +15,7 @@ const Apartment = ({ apartment: { description, numero, etage, prix } }) => {
   };
   const onEditClick = (e) => {
     e.stopPropagation();
-    navigate("/apartments/edit");
+    navigate("/apartments/edit", { state: { description, numero, etage, prix, id } });
   };
 
   return (

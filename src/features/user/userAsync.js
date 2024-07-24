@@ -6,21 +6,50 @@ export const userLogin = createAsyncThunk("user/login", async (payload, thunkApi
   try {
     const res = await axios.post("api/auth/login", { ...payload });
     localStorage.user = JSON.stringify(res.data);
+
+    axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
     toast.success(`welcome ${res.data.user.fullname}`);
+
     return res.data;
   } catch (err) {
-    toast.error(err.response.data.error);
-    return thunkApi.rejectWithValue(err.response.data.error);
+    toast.error("wrong email or password");
+    return thunkApi.rejectWithValue("wrong email or password");
   }
-  // so here because we have try-catch it will catch the error which mean the call back function
-  // will compelete its execution and return undefined which mean the promise will get resolved.
 });
 
-// createAsyncThunk will return a function that has the action creators as propertyies.
-// when you call that function with argument and dispatch the result
-// that argument will be the argument of the callback function in the createAsyncThunk.
-//
-// and the result is a function called thunk. when you dispatch that function the callback funtion will get
-// execute. then thunk will dispatch the pending action.
-// and will wait the result of the call back if the result (it is a promise) get fullfield it dispatch
-// the fullfiled action, if it gets reject, the rejected action will get dispatched
+export const fetchUsers = createAsyncThunk("users/fetch", async (_payload, thunkApi) => {
+  try {
+    const res = await axios("/api/auth/getAllUsers");
+    return res.data;
+  } catch (err) {
+    toast.error(err.message);
+    return thunkApi.rejectWithValue(err.message);
+  }
+});
+
+export const registerUser = createAsyncThunk(
+  "user/register",
+  async (payload, thunkApi) => {
+    try {
+      const params = {
+        fullname: payload.name,
+        address: payload.address,
+        email: payload.email,
+        phonenumber: payload.phone,
+        role: "client",
+      };
+      const res = await axios.post("/api/auth/register", params);
+      toast.success("registered successfully");
+      payload.navigate("/dashboard");
+
+      return res.data;
+    } catch (err) {
+      if (err.response.data === '{"email":["The email has already been taken."]}') {
+        toast.error("The email has already been taken");
+        return thunkApi.rejectWithValue("The email has already been taken");
+      }
+      toast.error("something went wrong");
+      return thunkApi.rejectWithValue("something went wrong");
+    }
+  }
+);

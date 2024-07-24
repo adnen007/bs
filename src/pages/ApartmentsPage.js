@@ -8,22 +8,19 @@ import Apartment from "../components/Apartment";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchApartments } from "../features/aparments/aparmentsAsync";
-import { useLocation } from "react-router-dom";
 
 const ApartmentsPage = () => {
   const apartments = useSelector((state) => {
-    return state.apartments.apartments_list;
+    return state.apartments.filtered_apartments_list;
   });
 
   const dispatch = useDispatch();
-  const {
-    state: { id },
-  } = useLocation();
+  const buildingId = useSelector((state) => state.apartments.current_building);
 
   useEffect(() => {
-    dispatch(fetchApartments(id));
+    dispatch(fetchApartments(buildingId));
     // here are not using the id now but after telling ghasen to fix this we will use it
-  }, [dispatch, id]);
+  }, [dispatch, buildingId]);
 
   return (
     <Wrapper>

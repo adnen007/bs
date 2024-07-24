@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteBuilding, editBuilding } from "../features/buildings/buildingsAsync";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const EditBuilding = () => {
   const { state: locationState } = useLocation();
@@ -14,6 +15,8 @@ const EditBuilding = () => {
     return state.user.user.id;
   });
 
+  // here check if after reload the state form the Link component disapear try to navigate to the buildings page if someone
+  // loaded the edit page  emidately wihtout click on the building first.
   let initialState = { name: "", city: "", apartments: "", address: "", id: null };
 
   if (locationState) {
@@ -39,8 +42,20 @@ const EditBuilding = () => {
   };
 
   const onEdit = (e) => {
+    for (let key in form) {
+      if (form[key] === "") {
+        toast.warn("fill all fields");
+        return;
+      }
+    }
     dispatch(editBuilding({ ...form, userId, navigate }));
   };
+
+  useEffect(() => {
+    if (!locationState) {
+      navigate("/buildings");
+    }
+  }, [locationState, navigate]);
 
   return (
     <Wrapper>
@@ -75,7 +90,7 @@ const EditBuilding = () => {
                 onChange={onFormChange}
                 value={form.apartments}
                 type="text"
-                name="appartments"
+                name="apartments"
               />
             </div>
             <div className="buttons">

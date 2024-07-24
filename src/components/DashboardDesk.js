@@ -7,101 +7,18 @@ import { FiPhone, FiEdit } from "react-icons/fi";
 import { GrPowerReset } from "react-icons/gr";
 
 import { MdPendingActions, MdDeleteOutline } from "react-icons/md";
-import user from "../assets/images/user.png";
+import userImage from "../assets/images/user.png";
 import Sidebar from "../components/Sidebar";
 import UsersSearch from "./UsersSearch";
-const users = [
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 1,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 2,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 3,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 4,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 5,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 6,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 7,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 8,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 9,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 10,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis soukra ariana dar fathal 2",
-    id: 11,
-    img: user,
-  },
-];
+
+import Loading from "./Loading";
+
+import { useSelector } from "react-redux";
 
 const DashboardDesk = () => {
+  const users = useSelector((state) => state.user.users_filtered_list);
+  const loading = useSelector((state) => state.user.loading);
+
   return (
     <Wrapper>
       <Sidebar />
@@ -135,34 +52,38 @@ const DashboardDesk = () => {
             </div>
           </div>
           <div className="rows">
-            {users.map((el) => {
-              return (
-                <div key={el.id} className="row">
-                  <div className="name">
-                    <div className="image">
-                      <img src={el.img} alt="" />
+            {loading ? (
+              <Loading type="section" />
+            ) : (
+              users.map((el) => {
+                return (
+                  <div key={el.id} className="row">
+                    <div className="name">
+                      <div className="image">
+                        <img src={userImage} alt="" />
+                      </div>
+                      <div className="info">
+                        <p>{el.fullname}</p>
+                        <p className="email">{el.email}</p>
+                      </div>
                     </div>
-                    <div className="info">
-                      <p>{el.name}</p>
-                      <p className="email">{el.email}</p>
+                    <div className="phone">{el.phonenumber}</div>
+                    <div className="location">{el.address}</div>
+                    <div className="actions">
+                      <Link to="/dashboard/edit" className="edit">
+                        <FiEdit />
+                      </Link>
+                      <div className="delete">
+                        <MdDeleteOutline />
+                      </div>
+                      <div className="reset">
+                        <GrPowerReset />
+                      </div>
                     </div>
                   </div>
-                  <div className="phone">{el.phone}</div>
-                  <div className="location">{el.location}</div>
-                  <div className="actions">
-                    <Link to="/dashboard/edit" className="edit">
-                      <FiEdit />
-                    </Link>
-                    <div className="delete">
-                      <MdDeleteOutline />
-                    </div>
-                    <div className="reset">
-                      <GrPowerReset />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </div>

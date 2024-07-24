@@ -2,100 +2,14 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import UsersSearch from "./UsersSearch";
 import Row from "./Row";
-import user from "../assets/images/user.png";
-
-const users = [
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 1,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 2,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 3,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 4,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 5,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 6,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 7,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 8,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 9,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis",
-    id: 10,
-    img: user,
-  },
-  {
-    name: "Gashen Abidi",
-    email: "Gashenabidi63@gmail.com",
-    phone: "2659263652",
-    location: "tunis soukra ariana dar fathal 2",
-    id: 11,
-    img: user,
-  },
-];
+import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 const DashboardMobile = () => {
+  const users = useSelector((state) => state.user.users_filtered_list);
+
+  const loading = useSelector((state) => state.user.loading);
+
   return (
     <Wrapper>
       <Header />
@@ -104,9 +18,13 @@ const DashboardMobile = () => {
       </div>
       <div className="table">
         <div className="container">
-          {users.map((el) => {
-            return <Row user={el} />;
-          })}
+          {loading ? (
+            <Loading />
+          ) : (
+            users.map((el) => {
+              return <Row user={el} />;
+            })
+          )}
         </div>
       </div>
     </Wrapper>

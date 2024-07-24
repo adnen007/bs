@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Row = ({ user: { name, location, phone, email } }) => {
+const Row = ({
+  user: { fullname: name, address: location, phonenumber: phone, email },
+}) => {
   return (
     <Wrapper>
       <div className="name">

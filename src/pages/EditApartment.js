@@ -2,25 +2,76 @@ import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { editApartment, deleteApartment } from "../features/aparments/aparmentsAsync";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const EditApartment = () => {
-  const [form, setForm] = useState({
+  let initialState = {
     tenant_name: "",
     phone: "",
     rent: "",
     apartment_address: "",
-  });
+    id: null,
+  };
+
+  const { state: locationState } = useLocation();
+
+  if (locationState) {
+    initialState = {
+      tenant_name: locationState.description,
+      phone: locationState.numero,
+      rent: locationState.prix,
+      apartment_address: locationState.etage,
+      id: locationState.id,
+    };
+  }
+  // here you did something very weid ghasen sometime use english sometime use frensh and even the frensh and english he is
+  // change the names in the apis so i dided to keep the front in english the the same name and whenver I interact with the api all
+  // what i do is translte those.
+  // so again discripton will be name and etage will be location
+  // and why not to ask ghasen and hey the rest of api please make them in english
+
+  const [form, setForm] = useState(initialState);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const editLoading = useSelector((state) => state.apartments.edit_apartment.loading);
+  const deleteLoading = useSelector((state) => state.apartments.delete_apartment.loading);
+
+  // initial state has the apartment as default
 
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
-  const OnButtonClick = () => {
-    console.log("button clicked");
+  const onEdit = () => {
+    for (let key in form) {
+      if (form[key] === "") {
+        toast.warn("fill all fields");
+        return;
+      }
+    }
+
+    dispatch(editApartment({ ...form, navigate }));
   };
+
+  const onDelete = () => {
+    dispatch(deleteApartment({ ...form, navigate }));
+  };
+
+  useEffect(() => {
+    if (!locationState) {
+      navigator("/apartments");
+    }
+  }, [locationState, navigate]);
 
   return (
     <Wrapper>
@@ -34,26 +85,41 @@ const EditApartment = () => {
           <form>
             <div>
               <label htmlFor="tenant_name">Tenant Name</label>
-              <input onChange={onFormChange} type="text" id="tenant_name" />
+              <input
+                onChange={onFormChange}
+                value={form.tenant_name}
+                type="text"
+                name="tenant_name"
+              />
             </div>
             <div>
               <label htmlFor="phone">Phone</label>
-              <input onChange={onFormChange} type="text" id="phone" />
+              <input
+                onChange={onFormChange}
+                value={form.phone}
+                type="text"
+                name="phone"
+              />
             </div>
             <div>
               <label htmlFor="rent">Rent</label>
-              <input onChange={onFormChange} type="text" id="rent" />
+              <input onChange={onFormChange} value={form.rent} type="text" name="rent" />
             </div>
             <div>
               <label htmlFor="apartment_address">Apartment Address </label>
-              <input onChange={onFormChange} type="text" id="apartment_address" />
+              <input
+                onChange={onFormChange}
+                value={form.apartment_address}
+                type="text"
+                name="apartment_address"
+              />
             </div>
             <div className="buttons">
-              <button type="button" onClick={OnButtonClick}>
-                Edit
+              <button type="button" onClick={onEdit}>
+                {editLoading ? "edit.." : "edit"}
               </button>
-              <button type="button" onClick={OnButtonClick}>
-                Delete
+              <button type="button" onClick={onDelete}>
+                {deleteLoading ? "delete.." : "delete"}
               </button>
             </div>
           </form>

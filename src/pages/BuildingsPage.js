@@ -30,8 +30,8 @@ const BuildingsPage = () => {
           {loading ? (
             <Loading type="section" />
           ) : (
-            filterdBuildings.map((el, i) => {
-              return <Building key={i} building={el} />;
+            filterdBuildings.map((el) => {
+              return <Building key={el.id} building={el} />;
             })
           )}
         </div>

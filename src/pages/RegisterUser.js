@@ -3,18 +3,33 @@ import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../features/user/userAsync";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
   const OnButtonClick = (e) => {
-    console.log("button clicked");
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(form.email)) {
+      toast.warn("email required!");
+      return;
+    }
+    if (form.name.length < 3) {
+      toast.warn("name should be more than 3 characters");
+      return;
+    }
+    dispatch(registerUser({ ...form, navigate }));
   };
 
   return (
@@ -29,19 +44,34 @@ const RegisterUser = () => {
           <form>
             <div>
               <label htmlFor="fullname">Full Name</label>
-              <input onChange={onFormChange} type="text" id="fullname" />
+              <input onChange={onFormChange} type="text" value={form.name} name="name" />
             </div>
             <div>
               <label htmlFor="email">email</label>
-              <input onChange={onFormChange} type="text" id="email" />
+              <input
+                onChange={onFormChange}
+                value={form.email}
+                type="email"
+                name="email"
+              />
             </div>
             <div>
               <label htmlFor="phone">phone</label>
-              <input onChange={onFormChange} type="text" id="phone" />
+              <input
+                onChange={onFormChange}
+                value={form.phone}
+                type="text"
+                name="phone"
+              />
             </div>
             <div>
               <label htmlFor="address">address</label>
-              <input onChange={onFormChange} type="text" id="address" />
+              <input
+                onChange={onFormChange}
+                value={form.address}
+                type="text"
+                name="address"
+              />
             </div>
             <button type="button" onClick={OnButtonClick}>
               create

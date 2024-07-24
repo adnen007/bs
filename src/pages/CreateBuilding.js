@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createBuilding } from "../features/buildings/buildingsAsync";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateBuilding = () => {
   const [form, setForm] = useState({ name: "", city: "", apartments: "", address: "" });
@@ -27,7 +28,13 @@ const CreateBuilding = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const OnButtonClick = (e) => {
+  const OnButtonClick = () => {
+    for (let key in form) {
+      if (form[key] === "") {
+        toast.warn("fill all fields");
+        return;
+      }
+    }
     dispatch(createBuilding({ ...form, user_id: userId, navigate }));
   };
 

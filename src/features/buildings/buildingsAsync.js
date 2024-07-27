@@ -2,16 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const fetchBuildings = createAsyncThunk("fetch_buildings", async (p, thunkApi) => {
-  try {
-    const res = await axios("/api/immeuble/index");
+export const fetchBuildings = createAsyncThunk(
+  "fetch_buildings",
+  async (payload, thunkApi) => {
+    try {
+      const res = await axios(`/api/immeuble/index/${payload}`);
 
-    return res.data;
-  } catch (err) {
-    toast.error(err.message);
-    return thunkApi.rejectWithValue(err.message);
+      return res.data;
+    } catch (err) {
+      toast.error(err.message);
+      return thunkApi.rejectWithValue(err.message);
+    }
   }
-});
+);
 
 export const createBuilding = createAsyncThunk(
   "create_building",

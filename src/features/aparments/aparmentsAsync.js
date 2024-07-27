@@ -5,7 +5,7 @@ export const fetchApartments = createAsyncThunk(
   "fetch/apartments",
   async (payload, thunkApi) => {
     try {
-      const res = await axios("/api/appartement/index");
+      const res = await axios(`/api/appartement/index/${payload}`);
       // note we will use the payload(or the id) after telling ghasen to fix this
       return res.data;
     } catch (err) {

@@ -24,7 +24,7 @@ export const createApartment = createAsyncThunk(
       numero: payload.phone,
       prix: payload.rent,
       etage: payload.apartment_address,
-      immeuble_id: payload.buildingId,
+      immeubles_id: payload.buildingId,
     };
 
     try {

@@ -47,6 +47,7 @@ const Wrapper = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+
   .image {
   }
   .image img {

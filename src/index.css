@@ -73,11 +73,11 @@ button {
   margin-right: auto;
 }
 
-@media (width >= 576px) {
+/* @media (width >= 576px) {
   .container {
     width: 540px;
   }
-}
+} */
 @media (width >= 768px) {
   .container {
     width: 720px;
@@ -90,7 +90,12 @@ button {
 }
 @media (width >= 1200px) {
   .container {
-    width: 1140px;
+    width: 1199px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
   }
 }
 

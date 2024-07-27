@@ -10,6 +10,8 @@ import { MdPendingActions, MdDeleteOutline } from "react-icons/md";
 import userImage from "../assets/images/user.png";
 import Sidebar from "../components/Sidebar";
 import UsersSearch from "./UsersSearch";
+import { useDispatch } from "react-redux";
+import { resetPassword } from "../features/user/userAsync";
 
 import Loading from "./Loading";
 
@@ -18,6 +20,14 @@ import { useSelector } from "react-redux";
 const DashboardDesk = () => {
   const users = useSelector((state) => state.user.users_filtered_list);
   const loading = useSelector((state) => state.user.loading);
+  const resetPasswordLoading = useSelector((state) => {
+    return state.user.reset_password.loading;
+  });
+  const dispatch = useDispatch();
+
+  const onResetPass = (email) => {
+    dispatch(resetPassword({ email }));
+  };
 
   return (
     <Wrapper>
@@ -70,14 +80,18 @@ const DashboardDesk = () => {
                     <div className="phone">{el.phonenumber}</div>
                     <div className="location">{el.address}</div>
                     <div className="actions">
-                      <Link to="/dashboard/edit" className="edit">
+                      <Link to="/dashboard/edit" state={{ el }} className="edit">
                         <FiEdit />
                       </Link>
                       <div className="delete">
                         <MdDeleteOutline />
                       </div>
-                      <div className="reset">
-                        <GrPowerReset />
+                      <div onClick={() => onResetPass(el.email)} className="reset">
+                        {resetPasswordLoading === el.email ? (
+                          <Loading type="icon" />
+                        ) : (
+                          <GrPowerReset />
+                        )}
                       </div>
                     </div>
                   </div>

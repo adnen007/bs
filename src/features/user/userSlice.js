@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin, fetchUsers, registerUser } from "./userAsync";
+import {
+  userLogin,
+  fetchUsers,
+  registerUser,
+  editUser,
+  resetPassword,
+} from "./userAsync";
 import axios from "axios";
 
 var initialState = {
@@ -10,6 +16,14 @@ var initialState = {
   users_filtered_list: [],
   error: null,
   register_user: {
+    loading: false,
+    response: null,
+  },
+  edit_user: {
+    loading: false,
+    response: null,
+  },
+  reset_password: {
     loading: false,
     response: null,
   },
@@ -26,6 +40,11 @@ if (localStorage.user) {
   };
 
   axios.defaults.headers.common["Authorization"] = `Bearer ${initialState.access_token}`;
+  setTimeout(() => {
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjE4MjQzNDAsImV4cCI6MTcyMTgyNzk0MCwibmJmIjoxNzIxODI0MzQwLCJqdGkiOiJXNVNFMjNjU3BFU2tPeWxvIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRi3MmRiN2E1OTc2ZjcifQ.MsZ_9eb_asejZ32NX4q1vm6WrTLyNKhJrvWXteXzwmM`;
+  }, 3000);
 }
 
 const userSlice = createSlice({
@@ -41,6 +60,14 @@ const userSlice = createSlice({
         users_filtered_list: [],
         error: null,
         register_user: {
+          loading: false,
+          response: null,
+        },
+        edit_user: {
+          loading: false,
+          response: null,
+        },
+        reset_password: {
           loading: false,
           response: null,
         },
@@ -86,9 +113,31 @@ const userSlice = createSlice({
         state.register_user.response = payload;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
-        console.log(state);
         state.register_user.loading = false;
         state.register_user.response = payload;
+      })
+      .addCase(editUser.pending, (state) => {
+        state.edit_user.loading = true;
+      })
+      .addCase(editUser.fulfilled, (state, { payload }) => {
+        state.edit_user.loading = false;
+        state.edit_user.response = payload;
+      })
+      .addCase(editUser.rejected, (state, { payload }) => {
+        console.log(state);
+        state.edit_user.loading = false;
+        state.edit_user.response = payload;
+      })
+      .addCase(resetPassword.pending, (state, action) => {
+        state.reset_password.loading = action.meta.arg.email;
+      })
+      .addCase(resetPassword.fulfilled, (state, { payload }) => {
+        state.reset_password.loading = false;
+        state.reset_password.response = payload;
+      })
+      .addCase(resetPassword.rejected, (state, { payload }) => {
+        state.reset_password.loading = false;
+        state.reset_password.response = payload;
       });
   },
 });

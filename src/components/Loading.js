@@ -31,6 +31,11 @@ const Wrapper = styled.div`
     width: 50px;
     border: 8px solid #000;
   }
+
+  .icon .loader {
+    width: 20px;
+    border: 6px solid #000;
+  }
   @keyframes l20-1 {
     0% {
       clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);

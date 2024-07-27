@@ -22,7 +22,7 @@ const DashboardMobile = () => {
             <Loading />
           ) : (
             users.map((el) => {
-              return <Row user={el} />;
+              return <Row key={el.id} user={el} />;
             })
           )}
         </div>

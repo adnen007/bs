@@ -53,3 +53,38 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const editUser = createAsyncThunk("edit/user", async (payload, thunkApi) => {
+  const params = {
+    phonenumber: payload.phonenumber,
+    address: payload.address,
+    email: payload.email,
+    fullname: payload.fullname,
+  };
+
+  try {
+    const res = await axios.post(`/api/auth/updateUser/${payload.id}`, params);
+    toast.success("edit successfully");
+    payload.navigate("/dashboard");
+    return res.data;
+  } catch (err) {
+    toast.error("something went wrong");
+
+    payload.navigate("/dashboard");
+    return thunkApi.rejectWithValue(err.message);
+  }
+});
+
+export const resetPassword = createAsyncThunk(
+  "reset_password",
+  async (payload, thunkApi) => {
+    try {
+      const res = await axios.post("/api/auth/resetPassword", payload);
+      toast.success("the client got his new password ");
+      return { ...res.data, email: payload.email };
+    } catch (err) {
+      toast.error("something went wrong");
+      return thunkApi.rejectWithValue({ email: payload.email, error: err.message });
+    }
+  }
+);

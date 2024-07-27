@@ -16,11 +16,15 @@ import EditApartment from "./pages/EditApartment";
 import CreateApartment from "./pages/CreateApartment";
 import FinancialManagement from "./pages/FinancialManagement";
 import StatsPage from "./pages/StatsPage";
+import useAxiosInterceptor from "./hooks/useAxiosInterceptor";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
+  useAxiosInterceptor();
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
+      <Route path="/landing" element={<LandingPage />} />
       <Route path="/dashboard" element={<PrivateRoute />}>
         <Route index element={<DashboardPage />} />
         <Route path="create" element={<RegisterUser />} />

@@ -2,20 +2,52 @@ import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { editUser } from "../features/user/userAsync";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const EditUser = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
+  let initialState = { fullname: "", email: "", phonenumber: "", address: "", id: "" };
+
+  const { state: locationState } = useLocation();
+
+  if (locationState) {
+    initialState = locationState.el;
+  }
+
+  const [form, setForm] = useState(initialState);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onFormChange = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
-    setForm({ ...form, [id]: value });
+    setForm({ ...form, [name]: value });
   };
 
-  const OnButtonClick = (e) => {
-    console.log("button clicked");
+  const onEdit = (e) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(form.email)) {
+      toast.warn("email required!");
+      return;
+    }
+    if (form.fullname.length < 3) {
+      toast.warn("name should be more than 3 characters");
+      return;
+    }
+
+    dispatch(editUser({ ...form, navigate }));
   };
+
+  useEffect(() => {
+    if (!locationState) {
+      navigate("/dashboard");
+    }
+  }, [locationState, navigate]);
 
   return (
     <Wrapper>
@@ -29,21 +61,41 @@ const EditUser = () => {
           <form>
             <div>
               <label htmlFor="fullname">Full Name</label>
-              <input onChange={onFormChange} type="text" id="fullname" />
+              <input
+                onChange={onFormChange}
+                type="text"
+                value={form.fullname}
+                name="fullname"
+              />
             </div>
             <div>
               <label htmlFor="email">email</label>
-              <input onChange={onFormChange} type="text" id="email" />
+              <input
+                onChange={onFormChange}
+                type="text"
+                value={form.email}
+                name="email"
+              />
             </div>
             <div>
               <label htmlFor="phone">phone</label>
-              <input onChange={onFormChange} type="text" id="phone" />
+              <input
+                onChange={onFormChange}
+                type="text"
+                value={form.phonenumber}
+                name="phonenumber"
+              />
             </div>
             <div>
               <label htmlFor="address">address</label>
-              <input onChange={onFormChange} type="text" id="address" />
+              <input
+                onChange={onFormChange}
+                type="text"
+                value={form.address}
+                name="address"
+              />
             </div>
-            <button type="button" onClick={OnButtonClick}>
+            <button type="button" onClick={onEdit}>
               edit
             </button>
           </form>

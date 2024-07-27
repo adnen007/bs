@@ -1,32 +1,46 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPassword } from "../features/user/userAsync";
 
-const Row = ({
-  user: { fullname: name, address: location, phonenumber: phone, email },
-}) => {
+const Row = ({ user: { fullname, address, phonenumber, email, id } }) => {
+  const dispatch = useDispatch();
+  const resetPasswordLoading = useSelector((state) => state.user.reset_password.loading);
+
+  const onResetPass = () => {
+    dispatch(resetPassword({ email }));
+  };
+
   return (
     <Wrapper>
       <div className="name">
         <p>Name :</p>
-        <p>{name}</p>
+        <p>{fullname}</p>
       </div>
       <div className="location">
         <p>Address :</p>
-        <p>{location}</p>
+        <p>{address}</p>
       </div>
       <div className="phone">
         <p>Phone :</p>
-        <p>{phone}</p>
+        <p>{phonenumber}</p>
       </div>
       <div className="email">
         <p>Email :</p>
         <p>{email}</p>
       </div>
       <div className="actions">
-        <Link to="/dashboard/edit">edit</Link>
+        <Link
+          to="/dashboard/edit"
+          state={{ el: { fullname, address, phonenumber, email, id } }}
+        >
+          edit
+        </Link>
 
         <button>delete</button>
-        <button>reset</button>
+        <button onClick={onResetPass}>
+          {resetPasswordLoading === email ? "reset..." : "reset"}
+        </button>
       </div>
     </Wrapper>
   );

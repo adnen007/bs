@@ -8,12 +8,16 @@ import Apartment from "../components/Apartment";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchApartments } from "../features/aparments/aparmentsAsync";
+import Loading from "../components/Loading";
 
 const ApartmentsPage = () => {
   const apartments = useSelector((state) => {
     return state.apartments.filtered_apartments_list;
   });
 
+  const loading = useSelector((state) => state.apartments.loading);
+  console.log(loading, "loading");
+  console.log("the apartments");
   const dispatch = useDispatch();
   const buildingId = useSelector((state) => state.apartments.current_building);
 
@@ -32,9 +36,13 @@ const ApartmentsPage = () => {
           <ApartmentsSearch />
         </div>
         <div className="content">
-          {apartments.map((el) => {
-            return <Apartment key={el.id} apartment={el} />;
-          })}
+          {loading ? (
+            <Loading type="section" />
+          ) : (
+            apartments.map((el) => {
+              return <Apartment key={el.id} apartment={el} />;
+            })
+          )}
         </div>
       </main>
     </Wrapper>
@@ -64,7 +72,7 @@ const Wrapper = styled.section`
   }
   > main .content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
     gap: 30px;
     margin: auto;
     margin-top: 30px;
@@ -75,13 +83,13 @@ const Wrapper = styled.section`
   }
   @media (min-width: 768px) {
     > main .content {
-      grid-template-columns: repeat(auto-fill, 200px);
+      grid-template-columns: repeat(auto-fit, 200px);
       max-width: 90%;
     }
   }
   @media (min-width: 1200px) {
     > main .content {
-      /* grid-template-columns: repeat(auto-fill, 210px); */
+      /* grid-template-columns: repeat(auto-fit, 210px); */
       max-width: 1100px;
     }
   }

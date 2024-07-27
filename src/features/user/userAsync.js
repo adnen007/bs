@@ -20,7 +20,7 @@ export const userLogin = createAsyncThunk("user/login", async (payload, thunkApi
 export const fetchUsers = createAsyncThunk("users/fetch", async (_payload, thunkApi) => {
   try {
     const res = await axios("/api/auth/getAllUsers");
-    return res.data;
+    return res.data.filter((el) => el.role === "client");
   } catch (err) {
     toast.error(err.message);
     return thunkApi.rejectWithValue(err.message);
@@ -88,3 +88,14 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+export const deleteUser = createAsyncThunk("delete_user", async (payload, thunkApi) => {
+  try {
+    const res = await axios.delete(`/api/auth/deleteUser/${payload}`);
+    toast.success("deleted successfully ");
+    return "deleted successfully";
+  } catch (err) {
+    toast.error("something went wrong");
+    return "something went wrong";
+  }
+});

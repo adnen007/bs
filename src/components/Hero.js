@@ -9,13 +9,15 @@ const Hero = () => {
     <Wrapper>
       <div className="container">
         <div className="left">
-          <h2>votre comfort est notre priorite</h2>
+          <h2 id="About">votre comfort est notre priorite</h2>
           <p>
             {text.split(" ").map((e) => {
               return <span> {e}</span>;
             })}
           </p>
-          <div className="discover_more">Découvrez plus</div>
+          <a href="#nos services" className="discover_more">
+            Découvrez plus
+          </a>
         </div>
         <div className="right">
           <div className="image">

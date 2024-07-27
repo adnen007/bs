@@ -12,7 +12,7 @@ const Dropdown = ({ onDropdown, showDropdown, list }) => {
         {list.map((el) => {
           return (
             <li onClick={() => onDropdown(false)}>
-              <a href="">{el}</a>
+              <a href={`#${el}`}>{el}</a>
             </li>
           );
         })}

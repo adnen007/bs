@@ -11,7 +11,7 @@ import userImage from "../assets/images/user.png";
 import Sidebar from "../components/Sidebar";
 import UsersSearch from "./UsersSearch";
 import { useDispatch } from "react-redux";
-import { resetPassword } from "../features/user/userAsync";
+import { resetPassword, deleteUser, fetchUsers } from "../features/user/userAsync";
 
 import Loading from "./Loading";
 
@@ -27,6 +27,11 @@ const DashboardDesk = () => {
 
   const onResetPass = (email) => {
     dispatch(resetPassword({ email }));
+  };
+
+  const onDelete = (id) => {
+    dispatch(deleteUser(id));
+    dispatch(fetchUsers());
   };
 
   return (
@@ -83,7 +88,7 @@ const DashboardDesk = () => {
                       <Link to="/dashboard/edit" state={{ el }} className="edit">
                         <FiEdit />
                       </Link>
-                      <div className="delete">
+                      <div onClick={() => onDelete(el.id)} className="delete">
                         <MdDeleteOutline />
                       </div>
                       <div onClick={() => onResetPass(el.email)} className="reset">

@@ -37,7 +37,9 @@ varaible styles
   --clr-brand-2: #8a2a2a;
   --clr-brand-3: #040818ad;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* 
 ============
 Global Style

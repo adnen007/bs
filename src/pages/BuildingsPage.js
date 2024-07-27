@@ -13,8 +13,9 @@ const BuildingsPage = () => {
   const { loading, filtered_buildings_list: filterdBuildings } = useSelector(
     (state) => state.buildings
   );
+  const id = useSelector((state) => state.user.user.id);
   useEffect(() => {
-    dispatch(fetchBuildings());
+    dispatch(fetchBuildings(id));
   }, [dispatch]);
 
   return (

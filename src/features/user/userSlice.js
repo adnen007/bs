@@ -5,6 +5,7 @@ import {
   registerUser,
   editUser,
   resetPassword,
+  deleteUser,
 } from "./userAsync";
 import axios from "axios";
 
@@ -27,6 +28,10 @@ var initialState = {
     loading: false,
     response: null,
   },
+  delete_user: {
+    loading: false,
+    response: null,
+  },
 };
 
 // here take from the local storage and save here.
@@ -40,11 +45,6 @@ if (localStorage.user) {
   };
 
   axios.defaults.headers.common["Authorization"] = `Bearer ${initialState.access_token}`;
-  setTimeout(() => {
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjE4MjQzNDAsImV4cCI6MTcyMTgyNzk0MCwibmJmIjoxNzIxODI0MzQwLCJqdGkiOiJXNVNFMjNjU3BFU2tPeWxvIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRi3MmRiN2E1OTc2ZjcifQ.MsZ_9eb_asejZ32NX4q1vm6WrTLyNKhJrvWXteXzwmM`;
-  }, 3000);
 }
 
 const userSlice = createSlice({
@@ -68,6 +68,10 @@ const userSlice = createSlice({
           response: null,
         },
         reset_password: {
+          loading: false,
+          response: null,
+        },
+        delete_user: {
           loading: false,
           response: null,
         },
@@ -138,6 +142,19 @@ const userSlice = createSlice({
       .addCase(resetPassword.rejected, (state, { payload }) => {
         state.reset_password.loading = false;
         state.reset_password.response = payload;
+      })
+      .addCase(deleteUser.pending, (state, action) => {
+        state.delete_user.loading = true;
+        state.loading = true;
+      })
+      .addCase(deleteUser.fulfilled, (state, { payload }) => {
+        state.delete_user.loading = false;
+        state.loading = false;
+        state.delete_user.response = payload;
+      })
+      .addCase(deleteUser.rejected, (state, { payload }) => {
+        state.delete_user.loading = false;
+        state.delete_user.response = payload;
       });
   },
 });

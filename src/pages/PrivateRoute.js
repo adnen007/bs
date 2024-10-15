@@ -8,12 +8,20 @@ const PrivateRoute = () => {
     return state.user.access_token;
   });
 
+  const role = useSelector((state) => {
+    return state.user.user.role;
+  });
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("firt render");
+
     if (!token) {
       navigate("/");
       // and show warn that you need to login first
+    } else if (!(role === "admin")) {
+      navigate("/buildings");
     }
   }, []);
 
@@ -21,3 +29,5 @@ const PrivateRoute = () => {
 };
 
 export default PrivateRoute;
+
+// || !(role === "admin")

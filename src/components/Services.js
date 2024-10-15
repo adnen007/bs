@@ -32,6 +32,9 @@ const Services = () => {
 };
 
 const Wrapper = styled.div`
+  background-color: #e4e4e4;
+  padding: 60px 0;
+
   h2 {
     font-size: 32px;
     width: fit-content;
@@ -39,7 +42,7 @@ const Wrapper = styled.div`
   }
 
   .services_list {
-    margin-top: 70px;
+    margin-top: 60px;
     padding: 0px 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -48,6 +51,7 @@ const Wrapper = styled.div`
 
   .service {
     border: solid 3px;
+    background-color: white;
   }
   .service .image {
     width: 100%;

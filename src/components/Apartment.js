@@ -11,7 +11,8 @@ const Apartment = ({ apartment: { description, numero, etage, prix, id } }) => {
   const navigate = useNavigate();
 
   const onApartmentClick = () => {
-    navigate("/financialmanagement");
+    navigate("/financialmanagement", { state: { id } });
+    // here in the navigate you should pass the id of the apartment tenant.
   };
   const onEditClick = (e) => {
     e.stopPropagation();

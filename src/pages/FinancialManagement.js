@@ -6,23 +6,32 @@ import Month from "../components/Month";
 
 import { useState } from "react";
 
+import { useLocation } from "react-router-dom";
+
 const monthsData = [
-  { id: 1, name: "January", incomes: 5000, outcomes: 3000 },
-  { id: 2, name: "February", incomes: 4500, outcomes: 2500 },
-  { id: 3, name: "March", incomes: 4800, outcomes: 2600 },
-  { id: 4, name: "April", incomes: 5200, outcomes: 3100 },
-  { id: 5, name: "May", incomes: 5500, outcomes: 3200 },
-  { id: 6, name: "June", incomes: 5300, outcomes: 3000 },
-  { id: 7, name: "July", incomes: 5600, outcomes: 3300 },
-  { id: 8, name: "August", incomes: 5700, outcomes: 3400 },
-  { id: 9, name: "September", incomes: 6000, outcomes: 3500 },
-  { id: 10, name: "October", incomes: 6200, outcomes: 3600 },
-  { id: 11, name: "November", incomes: 6400, outcomes: 3700 },
-  { id: 12, name: "December", incomes: 6600, outcomes: 3800 },
+  { id: 1, name: "January", rent: 5000, expenses: 3000 },
+  { id: 2, name: "February", rent: 4500, expenses: 2500 },
+  { id: 3, name: "March", rent: 4800, expenses: 2600 },
+  { id: 4, name: "April", rent: 5200, expenses: 3100 },
+  { id: 5, name: "May", rent: 5500, expenses: 3200 },
+  { id: 6, name: "June", rent: 5300, expenses: 3000 },
+  { id: 7, name: "July", rent: 5600, expenses: 3300 },
+  { id: 8, name: "August", rent: 5700, expenses: 3400 },
+  { id: 9, name: "September", rent: 6000, expenses: 3500 },
+  { id: 10, name: "October", rent: 6200, expenses: 3600 },
+  { id: 11, name: "November", rent: 6400, expenses: 3700 },
+  { id: 12, name: "December", rent: 6600, expenses: 3800 },
 ];
 
 const FinancialManagement = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  const {
+    state: { id },
+  } = useLocation(); // the id of the current apartment
+
+  // use this id to fetch the months list also ask ghassen why not to return the name of the tenant so you can just put it
+  // in the reciept or you can do this in the front side.
 
   const handleYearChange = (event) => {
     const year = event.target.value;

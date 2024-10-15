@@ -15,7 +15,7 @@ const Hero = () => {
               return <span> {e}</span>;
             })}
           </p>
-          <a href="#nos services" className="discover_more">
+          <a href="#Nos services" className="discover_more">
             Découvrez plus
           </a>
         </div>

@@ -1,6 +1,35 @@
 import styled from "styled-components";
+import { useReactToPrint } from "react-to-print";
+import { useRef, useState } from "react";
+import { FaRegSave, FaPrint } from "react-icons/fa";
+import { MdOutlineLocalPrintshop } from "react-icons/md";
+import Receipt from "./Receipt";
+import { useSelector } from "react-redux";
 
-const Month = ({ month: { name, incomes, outcomes } }) => {
+const Month = ({ month: { name, rent, expenses } }) => {
+  const componentRef = useRef();
+
+  const ownerName = useSelector((state) => state.user.user.fullname);
+
+  const [rentState, setRentState] = useState({ name, rent, expenses, description: "" });
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
+  const onFormChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setRentState({ ...rentState, [name]: value });
+  };
+
+  const onSaveClick = (e) => {
+    e.preventDefault();
+
+    // so basically here I'll get the data from rent state and some other data from context and use redux to dispatch
+    // an action that will update this month in the api
+  };
+
   return (
     <Wrapper>
       <div className="head">
@@ -9,19 +38,55 @@ const Month = ({ month: { name, incomes, outcomes } }) => {
           <input type="checkbox" />
         </div>
       </div>
-      <div className="incomes">
-        <p>incomes :</p> <p>{incomes} dt</p>
+      <div className="rent">
+        <p>Rent Price :</p>
+        <p>
+          <input
+            onChange={onFormChange}
+            name="rent"
+            type="number"
+            value={rentState.rent}
+          />
+        </p>
       </div>
-      <div className="outcomes">
-        <p>outcomes :</p> <p>{outcomes} dt</p>
+      <div className="expenses">
+        <p>Expenses :</p>
+        <p>
+          <input
+            onChange={onFormChange}
+            name="expenses"
+            type="number"
+            value={rentState.expenses}
+          />
+        </p>
       </div>
       <div className="text">
-        <textarea placeholder="expenses description" name="" id=""></textarea>
+        <textarea
+          placeholder="expenses description"
+          name="description"
+          value={rentState.description}
+          onChange={onFormChange}
+        ></textarea>
       </div>
 
       <div className="buttons">
-        <button className="edit">Edit</button>
-        <button className="update">Update</button>
+        <button onClick={onSaveClick} className="save">
+          <FaRegSave />
+        </button>
+        {/* <button className="edit">
+          <FiEdit />
+        </button> */}
+        <button onClick={handlePrint} className="print">
+          <MdOutlineLocalPrintshop />
+        </button>
+      </div>
+      <div ref={componentRef} className="receipt">
+        <Receipt
+          ownerName={ownerName}
+          clientName={name}
+          rentPrice={rent}
+          date={new Date().toDateString()}
+        />
       </div>
     </Wrapper>
   );
@@ -36,6 +101,9 @@ const Wrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   position: relative;
 
+  .receipt {
+    display: none;
+  }
   > div {
     padding: 6px 15px;
   }
@@ -45,18 +113,25 @@ const Wrapper = styled.div`
     font-size: 20px;
     padding: 10px 15px;
   }
-  .incomes,
-  .outcomes {
+  .rent,
+  .expenses {
     display: flex;
     justify-content: space-between;
     gap: 10px;
   }
-  .incomes {
+  .rent input,
+  .expenses input {
+    margin: 0px;
+    display: block;
+    width: 67px;
+    padding: 0px;
+  }
+  .rent {
     border-top: solid 1px var(--clr-black);
     padding-top: 20px;
   }
-  .incomes p:first-child,
-  .outcomes p:first-child {
+  .rent p:first-child,
+  .expenses p:first-child {
     width: 90px;
     font-weight: 600;
     letter-spacing: 0.2px;
@@ -76,19 +151,18 @@ const Wrapper = styled.div`
   }
   .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 60px;
     margin-top: 15px;
-    padding: 0px 15px 15px;
+    padding: 0px 15px 20px;
   }
   .buttons button {
     border: none;
-    padding: 9px 12px;
-    border-radius: 7px;
-    color: white;
-    background-color: var(--clr-brand-1);
+    background: white;
+    font-size: 29px;
   }
-  .buttons button.edit {
-    background-color: var(--clr-brand-3);
+  .buttons button svg {
+    display: block;
   }
 `;
 export default Month;

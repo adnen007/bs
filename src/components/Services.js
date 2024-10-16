@@ -12,12 +12,42 @@ import electricity from "../assets/images/electricity.jpg";
 
 const Services = () => {
   const list = [
-    { name: "Installation & Réparation", imageUrl: reparation },
-    { name: "Caméra de Surveillance", imageUrl: camera },
-    { name: "Climatisation Domotique", imageUrl: airConditioner },
-    { name: "Système d'alarme", imageUrl: alarm },
-    { name: "Incendie Télédistribution", imageUrl: smartHouse },
-    { name: "Électricité Bâtiment & Industriel", imageUrl: electricity },
+    {
+      name: "Installation & Réparation",
+      imageUrl: reparation,
+      description:
+        "Nous offrons des services d'installation et de réparation pour assurer le bon fonctionnement de vos équipements. Nos techniciens qualifiés interviennent rapidement et efficacement.",
+    },
+    {
+      name: "Caméra de Surveillance",
+      imageUrl: camera,
+      description:
+        "Protégez votre propriété avec nos systèmes de caméra de surveillance avancés. Nous garantissons une installation professionnelle pour une sécurité maximale.",
+    },
+    {
+      name: "Climatisation Domotique",
+      imageUrl: airConditioner,
+      description:
+        "Profitez d'un confort optimal grâce à nos solutions de climatisation domotique. Nos systèmes intelligents s'adaptent à vos besoins pour un contrôle facile et efficace.",
+    },
+    {
+      name: "Système d'alarme",
+      imageUrl: alarm,
+      description:
+        "Assurez la sécurité de votre espace avec nos systèmes d'alarme de pointe. Nous vous aidons à choisir la solution adaptée à vos besoins spécifiques.",
+    },
+    {
+      name: "Incendie Télédistribution",
+      imageUrl: smartHouse,
+      description:
+        "Nous proposons des systèmes de télédistribution pour la détection d'incendie. Nos solutions garantissent une réponse rapide en cas d'urgence.",
+    },
+    {
+      name: "Électricité Bâtiment & Industriel",
+      imageUrl: electricity,
+      description:
+        "Nos services électriques pour bâtiments et industriels garantissent des installations sécurisées et conformes. Faites confiance à notre expertise pour tous vos projets électriques.",
+    },
   ];
   return (
     <Wrapper>
@@ -27,7 +57,7 @@ const Services = () => {
           {list.map((el) => {
             return (
               <div className="service">
-                <div className="description"> WRITE SOMETHING </div>
+                <div className="description"> {el.description} </div>
                 <div className="image">
                   <img src={el.imageUrl} alt="" />
                 </div>
@@ -83,6 +113,11 @@ const Wrapper = styled.div`
     align-items: center;
     transform: translatey(100%);
     transition: 0.4s;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    line-height: 36px;
   }
   .service:hover .description {
     transform: translatey(0%);

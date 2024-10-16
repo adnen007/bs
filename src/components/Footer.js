@@ -26,7 +26,7 @@ const Footer = () => {
         <p>&copy; 2024 ElectroBs. All rights reserved.</p>
         <div className="links">
           {Links.map((el) => {
-            return <a href="url">{el.icon}</a>;
+            return <a href={el.url}>{el.icon}</a>;
           })}
         </div>
       </footer>

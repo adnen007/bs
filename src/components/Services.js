@@ -96,10 +96,11 @@ const Wrapper = styled.div`
   }
 
   .service {
-    border: solid 3px;
+    border: solid 1px;
     background-color: white;
     position: relative;
     overflow: hidden;
+    border-radius: 0.25rem;
   }
   .description {
     position: absolute;
@@ -135,7 +136,7 @@ const Wrapper = styled.div`
     object-fit: cover;
   }
   .service .detail {
-    border-top: solid 3px;
+    border-top: solid 1px;
     padding: 15px;
     text-align: center;
   }

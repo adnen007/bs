@@ -8,19 +8,19 @@ const Info = () => {
         <div className="icon">
           <CiMail />
         </div>
-        <p>Ghassen@mail.com</p>
+        <p>taoufikbensalem10@gmail.com</p>
       </div>
       <div className="row">
         <div className="icon">
           <CiPhone />
         </div>
-        <p> + 25 456 987</p>
+        <p> + 98 238 638</p>
       </div>
       <div className="row">
         <div className="icon">
           <CiLocationOn />
         </div>
-        <p>soukra shotrana 3</p>
+        <p>06.Rue Ghilel Choutrana III prés de vitatop</p>
       </div>
       <div className="row">
         <div className="icon">
@@ -39,7 +39,10 @@ const Wrapper = styled.div`
   border-radius: var(--radius);
   display: grid;
   gap: 32px;
-  padding: 30px;
+  padding: 20px;
+  @media (width >= 768px) {
+    width: 290px;
+  }
   .row {
     display: flex;
     gap: 10px;

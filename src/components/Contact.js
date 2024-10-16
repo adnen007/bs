@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const Contact = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  console.log("contact");
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -32,13 +32,14 @@ const Contact = () => {
         <div className="left">
           <h2 id="Contact-nous">Contact-nous</h2>
           <p>
-            feel free to contact us any time, we will get back to you as soon as we can.
+            N'hésitez pas à nous contacter à tout moment, nous vous répondrons dès que
+            possible.
           </p>
           <form>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Nom" />
             <input type="email" placeholder="Email" />
             <input type="text" placeholder="Message" />
-            <button type="button"> Send</button>
+            <button type="button"> Envoyer</button>
           </form>
         </div>
 

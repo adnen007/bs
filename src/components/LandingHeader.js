@@ -30,7 +30,8 @@ const LandingHeader = () => {
           })}
         </ul>
         <Link className="login" to="/">
-          Connexion
+          <div className="login_background"></div>
+          <span>Connexion</span>
         </Link>
         <div onClick={() => onDropdown(true)} className="icon">
           <RxHamburgerMenu />
@@ -67,7 +68,32 @@ const Wrapper = styled.header`
 
   > .container > .login {
     display: none;
+    position: relative;
   }
+  .login > span {
+    display: block;
+    position: relative;
+    z-index: 2;
+    transition: 0.2s 0.1s;
+  }
+
+  .login .login_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0px;
+    background: black;
+    transition: 0.4s;
+  }
+  .login:hover .login_background {
+    width: 100%;
+  }
+  .login:hover span {
+    color: white;
+    z-index: 3;
+  }
+
   > .container > .icon {
   }
   > .container > .icon svg {
@@ -75,6 +101,7 @@ const Wrapper = styled.header`
     font-size: 32px;
     color: var(--clr-b-2);
   }
+
   @media (min-width: 786px) {
     > .container > .menu {
       display: flex;

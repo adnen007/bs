@@ -27,6 +27,7 @@ const Services = () => {
           {list.map((el) => {
             return (
               <div className="service">
+                <div className="description"> WRITE SOMETHING </div>
                 <div className="image">
                   <img src={el.imageUrl} alt="" />
                 </div>
@@ -67,13 +68,34 @@ const Wrapper = styled.div`
   .service {
     border: solid 3px;
     background-color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .description {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translatey(100%);
+    transition: 0.4s;
+  }
+  .service:hover .description {
+    transform: translatey(0%);
   }
   .service .image {
     width: 100%;
+    height: 230px;
+    overflow: hidden;
   }
 
   .service .image img {
     width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
   }

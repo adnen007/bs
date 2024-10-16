@@ -3,13 +3,15 @@ import image from "../assets/images/Construction worker-amico 1.png";
 
 const Hero = () => {
   const text =
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, at sed omnis corporis doloremque possimus velit! Repudiandae nisi odit, aperiam odio ducimus, obcaecati libero et quia ";
+    "Nous proposons des services de qualité en installation, réparation, systèmes de surveillance, climatisation domotique, sécurité incendie, télédistribution, et électricité pour bâtiments et industries. Avec notre expertise, nous vous assurons des solutions fiables et adaptées à vos besoins.";
+
+  console.log(text.split(" ").length);
 
   return (
     <Wrapper>
       <div className="container">
         <div className="left">
-          <h2 id="About">votre comfort est notre priorite</h2>
+          <h2 id="A propos">votre comfort est notre priorite</h2>
           <p>
             {text.split(" ").map((e) => {
               return <span> {e}</span>;
@@ -148,6 +150,39 @@ const Wrapper = styled.div`
   }
   .left p > span:nth-child(26) {
     animation: frog 0.7s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(27) {
+    animation: frog 0.7s 2.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(28) {
+    animation: frog 0.7s 2.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(29) {
+    animation: frog 0.7s 2.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(30) {
+    animation: frog 0.7s 2.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(31) {
+    animation: frog 0.7s 3s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(32) {
+    animation: frog 0.7s 3.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(33) {
+    animation: frog 0.7s 3.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(34) {
+    animation: frog 0.7s 3.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(35) {
+    animation: frog 0.7s 3.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(36) {
+    animation: frog 0.7s 3.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  .left p > span:nth-child(37) {
+    animation: frog 0.7s 3.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
   }
 
   .discover_more {

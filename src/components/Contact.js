@@ -97,7 +97,7 @@ const Wrapper = styled.div`
   .right {
     position: relative;
     width: 50%;
-    max-width: 400px;
+    max-width: 350px;
   }
 
   .design1 {

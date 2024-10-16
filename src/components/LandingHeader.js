@@ -6,7 +6,7 @@ import Logo from "../assets/images/image 29.png";
 import { useState } from "react";
 
 const LandingHeader = () => {
-  const list = ["Nos services", "Contact-nous", "About"];
+  const list = ["Nos services", "Contact-nous", "A propos"];
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -30,7 +30,7 @@ const LandingHeader = () => {
           })}
         </ul>
         <Link className="login" to="/">
-          Login
+          Connexion
         </Link>
         <div onClick={() => onDropdown(true)} className="icon">
           <RxHamburgerMenu />

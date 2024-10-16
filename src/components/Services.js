@@ -1,14 +1,23 @@
 import styled from "styled-components";
-import image from "../assets/images/App installation-amico 1.png";
+import reparation from "../assets/images/reparation.jpg";
+import alarm from "../assets/images/alarm.webp";
+import camera from "../assets/images/camera.jpg";
+import smartHouse from "../assets/images/smart_house.jpg";
+import airConditioner from "../assets/images/air-conditioner.webp";
+import electricity from "../assets/images/electricity.jpg";
+
+// note i got the alarm image and the airConditoner image random from google not from a free source
+// like unplash so yeah you should change them in the future.
+// also fro better performance choose images with less resolution
 
 const Services = () => {
   const list = [
-    "Installation & reparation",
-    "Installation & reparation",
-    "Installation & reparation",
-    "Installation & reparation",
-    "Installation & reparation",
-    "Installation & reparation",
+    { name: "Installation & Réparation", imageUrl: reparation },
+    { name: "Caméra de Surveillance", imageUrl: camera },
+    { name: "Climatisation Domotique", imageUrl: airConditioner },
+    { name: "Système d'alarme", imageUrl: alarm },
+    { name: "Incendie Télédistribution", imageUrl: smartHouse },
+    { name: "Électricité Bâtiment & Industriel", imageUrl: electricity },
   ];
   return (
     <Wrapper>
@@ -19,9 +28,9 @@ const Services = () => {
             return (
               <div className="service">
                 <div className="image">
-                  <img src={image} alt="" />
+                  <img src={el.imageUrl} alt="" />
                 </div>
-                <div className="detail">{el}</div>
+                <div className="detail">{el.name}</div>
               </div>
             );
           })}
@@ -34,6 +43,12 @@ const Services = () => {
 const Wrapper = styled.div`
   background-color: #e4e4e4;
   padding: 60px 0;
+
+  @media (width >= 768px) {
+    .container {
+      padding: 0 40px;
+    }
+  }
 
   h2 {
     font-size: 32px;
@@ -55,11 +70,12 @@ const Wrapper = styled.div`
   }
   .service .image {
     width: 100%;
-    padding: 15px;
   }
 
   .service .image img {
     width: 100%;
+    display: block;
+    object-fit: cover;
   }
   .service .detail {
     border-top: solid 3px;

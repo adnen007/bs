@@ -16,7 +16,7 @@ const BuildingsPage = () => {
   const id = useSelector((state) => state.user.user.id);
   useEffect(() => {
     dispatch(fetchBuildings(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <Wrapper>

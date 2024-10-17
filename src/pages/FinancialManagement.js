@@ -33,6 +33,8 @@ const FinancialManagement = () => {
   // use this id to fetch the months list also ask ghassen why not to return the name of the tenant so you can just put it
   // in the reciept or you can do this in the front side.
 
+  console.log(`id of current apartment ${id} current year ${selectedYear}`);
+
   const handleYearChange = (event) => {
     const year = event.target.value;
     setSelectedYear(year);

@@ -13,17 +13,17 @@ const PrivateRoute = () => {
   });
 
   const navigate = useNavigate();
+  console.log("navigate ref", navigate);
 
   useEffect(() => {
-    console.log("firt render");
-
     if (!token) {
       navigate("/");
       // and show warn that you need to login first
     } else if (!(role === "admin")) {
       navigate("/buildings");
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, role]);
 
   return <Outlet />;
 };

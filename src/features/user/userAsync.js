@@ -9,7 +9,7 @@ export const userLogin = createAsyncThunk("user/login", async (payload, thunkApi
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
     toast.success(`welcome ${res.data.user.fullname}`);
-
+    console.log(res.data);
     return res.data;
   } catch (err) {
     toast.error("wrong email or password");
@@ -89,10 +89,11 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-export const deleteUser = createAsyncThunk("delete_user", async (payload, thunkApi) => {
+export const deleteUser = createAsyncThunk("delete_user", async (payload) => {
   try {
-    const res = await axios.delete(`/api/auth/deleteUser/${payload}`);
+    // const res = await axios.delete(`/api/auth/deleteUser/${payload}`);
     toast.success("deleted successfully ");
+    console.log(payload);
     return "deleted successfully";
   } catch (err) {
     toast.error("something went wrong");

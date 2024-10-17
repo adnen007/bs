@@ -74,7 +74,7 @@ export const deleteApartment = createAsyncThunk(
     // later I may get the building id too  WHEN GHASEN FIX THE API
     try {
       // this method should be changed from post to delete
-      const res = await axios.post(`/api/appartement/delete/${payload.id}`);
+      // const res = await axios.post(`/api/appartement/delete/${payload.id}`);
       toast.success("deleted successfully");
       payload.navigate("/apartments");
       return "deleted successfully";

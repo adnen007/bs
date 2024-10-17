@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useReactToPrint } from "react-to-print";
 import { useRef, useState } from "react";
-import { FaRegSave, FaPrint } from "react-icons/fa";
+import { FaRegSave } from "react-icons/fa";
 import { MdOutlineLocalPrintshop } from "react-icons/md";
 import Receipt from "./Receipt";
 import { useSelector } from "react-redux";

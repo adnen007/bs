@@ -44,7 +44,7 @@ const CreateApartment = () => {
       toast.warn("chose a building before creating an apartment");
       navigate("/buildings");
     }
-  }, []);
+  }, [navigate, buildingId]);
 
   return (
     <Wrapper>

@@ -50,12 +50,18 @@ const Wrapper = styled.div`
   }
 
   .left h2 {
-    margin-top: -92px;
+    margin-top: 0px;
     text-transform: capitalize;
     line-height: 47px;
     font-size: 39px;
     color: #1e2834;
     font-weight: 800;
+  }
+
+  @media (min-width: 425px) {
+    .left h2 {
+      margin-top: -92px;
+    }
   }
 
   @media (min-width: 992px) {

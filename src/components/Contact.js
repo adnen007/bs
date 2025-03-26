@@ -31,10 +31,7 @@ const Contact = () => {
       <div className="container">
         <div className="left">
           <h2 id="Contact-nous">Contact-nous</h2>
-          <p>
-            N'hésitez pas à nous contacter à tout moment, nous vous répondrons dès que
-            possible.
-          </p>
+          <p>N'hésitez pas à nous contacter à tout moment, nous vous répondrons dès que possible.</p>
           <form>
             <input type="text" placeholder="Nom" />
             <input type="email" placeholder="Email" />
@@ -83,8 +80,12 @@ const Wrapper = styled.div`
     border: none;
     border-bottom: 1px solid #777;
     font-size: 14px;
-    padding-right: 5px;
+    padding-left: 10px;
     height: 30px;
+  }
+  form input:focus {
+    outline: none;
+    border-bottom: 2px solid black;
   }
   form button {
     margin-top: 40px;

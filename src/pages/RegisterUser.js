@@ -48,30 +48,15 @@ const RegisterUser = () => {
             </div>
             <div>
               <label htmlFor="email">email</label>
-              <input
-                onChange={onFormChange}
-                value={form.email}
-                type="email"
-                name="email"
-              />
+              <input onChange={onFormChange} value={form.email} type="email" name="email" />
             </div>
             <div>
               <label htmlFor="phone">phone</label>
-              <input
-                onChange={onFormChange}
-                value={form.phone}
-                type="text"
-                name="phone"
-              />
+              <input onChange={onFormChange} value={form.phone} type="text" name="phone" />
             </div>
             <div>
               <label htmlFor="address">address</label>
-              <input
-                onChange={onFormChange}
-                value={form.address}
-                type="text"
-                name="address"
-              />
+              <input onChange={onFormChange} value={form.address} type="text" name="address" />
             </div>
             <button type="button" onClick={OnButtonClick}>
               create

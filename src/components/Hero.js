@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import image from "../assets/images/Construction worker-amico 1.png";
+import video from "../assets/video/recording.webm";
 
 const Hero = () => {
   const text =
@@ -23,7 +24,10 @@ const Hero = () => {
         </div>
         <div className="right">
           <div className="image">
-            <img src={image} alt="" />
+            {/* <img src={image} alt="" /> */}
+            <video autoPlay="autoplay" loop muted>
+              <source src={video} type="video/webm" />
+            </video>
           </div>
         </div>
       </div>
@@ -49,6 +53,12 @@ const Wrapper = styled.div`
     height: 100%;
   }
 
+  @media (max-width: 768px) {
+    .left {
+      gap: 15px;
+    }
+  }
+
   .left h2 {
     margin-top: 0px;
     text-transform: capitalize;
@@ -60,7 +70,7 @@ const Wrapper = styled.div`
 
   @media (min-width: 425px) {
     .left h2 {
-      margin-top: -92px;
+      /* margin-top: -92px; */
     }
   }
 
@@ -218,6 +228,17 @@ const Wrapper = styled.div`
   }
   .right > .image > img {
     width: 400px;
+    max-width: 100%;
+    display: block;
+  }
+
+  .right > .image {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 30px;
+  }
+  .right > .image > video {
+    width: 500px;
     max-width: 100%;
     display: block;
   }
